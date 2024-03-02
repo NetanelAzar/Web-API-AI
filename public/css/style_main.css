@@ -1,0 +1,130 @@
+/* Basic CSS for styling */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #333;
+  color: #fff;
+}
+header {
+  background-color: #222;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+nav {
+  background-color: #111;
+  color: #fff;
+  padding: 10px 0;
+  text-align: center;
+}
+nav a {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+nav a:hover {
+  background-color: #444;
+}
+.container {
+  max-width: 400px; /*
+        Adjusted maximum width */
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.card {
+  background-color: #222;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  margin-top: 20px;
+}
+.card h2 {
+  color: #007bff;
+  margin-top: 0;
+}
+.card p {
+  color: #ddd;
+  margin: 10px 0;
+}
+.card-img {
+  width: 100%;
+  height: 50%;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+.card-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+}
+.card-button:hover {
+  background-color: #0056b3;
+}
+footer {
+  background-color: #111;
+  color: #ddd;
+  padding: 20px;
+  text-align: center;
+  margin-top: 50px;
+} /* Responsive
+        CSS */
+@media only screen and (max-width: 600px) {
+  header {
+    padding: 10px;
+  }
+  nav {
+    padding: 5px 0;
+  }
+  nav a {
+    padding: 5px 10px;
+    margin: 0 5px;
+  }
+  .container {
+    padding: 0 10px;
+  }
+  .card {
+    padding: 15px;
+    margin-top: 10px;
+  }
+  .card-input {
+    display: flex;
+    align-items: center;
+  }
+
+  .card-input input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-right: 10px;
+  }
+
+  .card-input button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .card-input button:hover {
+    background-color: #0056b3;
+  }
+
+  footer {
+    padding: 10px;
+  }
+}
