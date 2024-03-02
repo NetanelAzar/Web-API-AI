@@ -1,55 +1,74 @@
-const User = require("../models/user");
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
+const User = require("../models/user"); // יבוא מודל user
+const bcrypt = require("bcrypt"); // יבוא המודול bcrypt
+const jwt = require("jsonwebtoken"); // יבוא המודול jsonwebtoken
+
 module.exports = {
   getAllUsers: (req, res) => {
+    // פונקציה לקבלת כל המשתמשים
     User.find().then((data) => {
-      return res.status(200).json(data);
+      // מציאת כל המשתמשים במודל user
+      return res.status(200).json(data); // החזרת נתוני המשתמשים בפורמט JSON
     });
   },
 
   getUserById: (req, res) => {
-    let userId = req.params.id;
+    // פונקציה לקבלת משתמש לפי מזהה
+    let userId = req.params.id; // השגת מזהה מהבקשה
     User.findOne({ userId }).then((data) => {
-      return res.status(200).json(data);
+      // מציאת משתמש לפי המזהה
+      return res.status(200).json(data); // החזרת המשתמש בפורמט JSON
     });
   },
 
   addUser: (req, res) => {
-    let body = req.body;
+    // פונקציה להוספת משתמש חדש
+    let body = req.body; // קבלת גוף הבקשה
     User.insertMany([body]).then((data) => {
-      return res.status(200).json(data);
+      // הוספת משתמש חדש למודל user
+      return res.status(200).json(data); // החזרת נתונים על הוספת המשתמש בפורמט JSON
     });
   },
 
   updateUser: (req, res) => {
-    let body = req.body;
-    let userId = req.params.id;
+    // פונקציה לעדכון משתמש
+    let body = req.body; // קבלת גוף הבקשה
+    let userId = req.params.id; // השגת מזהה מהבקשה
     User.updateOne({ userId }, body).then((data) => {
-      return res.status(200).json(data);
+      // עדכון המשתמש לפי המזהה
+      return res.status(200).json(data); // החזרת נתונים על העדכון בפורמט JSON
     });
   },
+
   deleteUser: (req, res) => {
-    let userId = req.params.id;
+    // פונקציה למחיקת משתמש
+    let userId = req.params.id; // השגת מזהה מהבקשה
     User.deleteOne({ userId }).then((data) => {
-      return res.status(200).json(data);
+      // מחיקת המשתמש לפי המזהה
+      return res.status(200).json(data); // החזרת נתונים על המחיקה בפורמט JSON
     });
   },
 
   register: (req, res) => {
-    const { userId, fullName, email, pass, phone } = req.body;
+    // פונקציה לרישום משתמש חדש
+    const { userId, fullName, email, pass, phone } = req.body; // שליפת פרטי המשתמש מהבקשה
     User.find({ email }).then((results) => {
+      // בדיקה אם כבר קיים משתמש עם כתובת האימייל
       if (results.length > 0) {
-        return res.status(200).json({ message: "Email is already taken" });
+        // אם קיים משתמש עם כתובת האימייל
+        return res.status(200).json({ message: "Email is already taken" }); // החזרת הודעת שגיאה
       } else {
+        // אם אין משתמש עם כתובת האימייל
         bcrypt.hash(pass, 10).then((hashPass) => {
+          // הצפנת הסיסמה
           User.insertMany({
+            // הוספת המשתמש החדש למודל user
             userId,
             fullName,
             email,
             pass: hashPass,
             phone,
           }).then((results) => {
+            // החזרת נתונים על הוספת המשתמש בפורמט JSON
             return res.status(200).json(results);
           });
         });
@@ -58,26 +77,32 @@ module.exports = {
   },
 
   login: (req, res) => {
-    const { email, pass } = req.body;
+    // פונקציה להתחברות משתמש
+    const { email, pass } = req.body; // שליפת פרטי המשתמש מהבקשה
     User.find({ email }).then((results) => {
+      // מציאת המשתמש לפי האימייל
       if (results.length == 0)
-        return res.status(200).json({ message: "Email or Pass not found" });
+        // אם לא נמצא משתמש עם האימייל
+        return res.status(200).json({ message: "Email or Pass not found" }); // החזרת הודעת שגיאה
 
-      const hashPass = results[0].pass;
+      const hashPass = results[0].pass; // שמירת הסיסמה המוצפנת
       bcrypt.compare(pass, hashPass).then((status) => {
+        // בדיקת תואמות הסיסמה
         if (!status)
-          return res.status(200).json({ message: "Email or Pass not found" });
+          // אם הסיסמה לא תואמת
+          return res.status(200).json({ message: "Email or Pass not found" }); // החזרת הודעת שגיאה
 
-        const myUser = results[0];
+        const myUser = results[0]; // שמירת פרטי המשתמש
         const token = jwt.sign(
-          { email, pass, fullName: myUser.fullName },
-          process.env.PRIVATE_KEY,
+          // יצירת טוקן
+          { email, pass, fullName: myUser.fullName }, // נתונים לכלול בטוקן
+          process.env.PRIVATE_KEY, // מפתח סודי להצפנה
           {
-            expiresIn: "1h",
+            expiresIn: "1h", // תוקף הטוקן
           }
         );
-        req.session.user = token;
-        return res
+        req.session.user = token; // שמירת הטוקן ב-session
+        return res // החזרת הודעת הצלחה והטוקן בפורמט JSON
           .status(200)
           .json({ message: "user login successfully", token });
       });
