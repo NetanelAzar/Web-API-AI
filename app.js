@@ -92,6 +92,16 @@ app.get("/user", (req, res) => {
     });
 });
 
+app.get("/", (req, res) => {
+  return res.status(200).render("home", { layout: "main", title: "Home" });
+});
+
+app.get("/register", (req, res) => {
+  return res
+    .status(200)
+    .render("register", { layout: "main", title: "Register" });
+});
+
 app.use("/", textRouter); // שימוש ב-textRouter עבור הנתיב הראשי
 app.use("/user", userRoute); // שימוש ב-userRoute עבור הנתיב /user
 
