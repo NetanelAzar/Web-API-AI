@@ -1,0 +1,37 @@
+#homeAI {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+#home-card {
+  background-color: #422929;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#home-card p {
+  font-size: 18px;
+  color: white;
+  margin-bottom: 30px;
+}
+
+#home-card button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#home-card button:hover {
+  background-color: #45a049;
+}
+
+#home-card button:focus {
+  outline: none;
+}
