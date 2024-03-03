@@ -17,7 +17,7 @@ const {
 routes.get("/", getAllTexts);
 
 // הגדרת נתיב POST להוספת טקסט חדש, עם middleware של auth ושימוש בפונקציה addText מהקונטרולר textController
-routes.post("/api/text", auth, textController.addText);
+routes.post("/api/text", textController.addText);
 
 // הגדרת נתיב PATCH לעדכון טקסט קיים על פי ה-ID שמתקבל בפרמטר, שימוש בפונקציה updateText מהקונטרולר text_mongo
 routes.patch("/:id", updateText);
