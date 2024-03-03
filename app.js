@@ -2,7 +2,7 @@ require("dotenv").config(); // טוען את הקונפיגורציה מהקוב
 const express = require("express"); // ייבוא המודול express
 const morgan = require("morgan"); // ייבוא המודול morgan
 const mongoose = require("mongoose"); // ייבוא המודול mongoose
-mongoose.pluralize(null); // הגדרת ייבוס לשמות הטבלאות
+mongoose.pluralize(null); // מונע מ-Mongoose להמיר את שמות הדגמים לשמות הקולקציות במסד הנתונים
 const MongoStore = require("connect-mongo"); // ייבוא המודול connect-mongo
 const session = require("express-session"); // ייבוא המודול express-session
 const hbs = require("express-handlebars"); // ייבוא המודול express-handlebars
