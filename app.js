@@ -17,7 +17,7 @@ const connection = mysql.createConnection({
   host: "127.0.0.1",
   user: "root",
   password: process.env.MYSQL_PRIVATE_PASS,
-  database: "webai",
+  database: process.env.MYSQL_DB,
 });
 connection.connect(() => {
   // התחברות למסד נתונים MySQL
