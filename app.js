@@ -101,6 +101,9 @@ app.get("/register", (req, res) => {
     .status(200)
     .render("register", { layout: "main", title: "Register" });
 });
+app.get("/login", (req, res) => {
+  return res.status(200).render("login", { layout: "main", title: "Login" });
+});
 
 app.use("/", textRouter); // שימוש ב-textRouter עבור הנתיב הראשי
 app.use("/user", userRoute); // שימוש ב-userRoute עבור הנתיב /user
