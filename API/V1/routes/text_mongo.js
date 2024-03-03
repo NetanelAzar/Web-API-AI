@@ -4,6 +4,7 @@ const routes = require("express").Router();
 const textController = require("../controllers/textController");
 // ייבוא middleware לאימות
 const auth = require("../middlewares/auth");
+const session = require("../middlewares/authSession");
 
 // ייבוא פונקציות הקונטרולרים לטקסט מהקובץ text_mongo
 const {
@@ -16,7 +17,7 @@ const {
 routes.get("/", getAllTexts);
 
 // הגדרת נתיב POST להוספת טקסט חדש, עם middleware של auth ושימוש בפונקציה addText מהקונטרולר textController
-routes.post("/api/text", textController.addText);
+routes.post("/api/text", auth, textController.addText);
 
 // הגדרת נתיב PATCH לעדכון טקסט קיים על פי ה-ID שמתקבל בפרמטר, שימוש בפונקציה updateText מהקונטרולר text_mongo
 routes.patch("/:id", updateText);
