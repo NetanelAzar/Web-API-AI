@@ -15,7 +15,7 @@ const userRoute = require("./API/V1/routes/user"); // ייבוא נתיב user
 const connection = mysql.createConnection({
   // יצירת חיבור למסד נתונים MySQL
   host: "127.0.0.1",
-  user: "root",
+  user: process.env.MYSQL_USER,
   password: process.env.MYSQL_PRIVATE_PASS,
   database: process.env.MYSQL_DB,
 });
@@ -61,7 +61,7 @@ app.use(
     cookie: { maxAge: twentyMin }, // הגדרת תקופת חיים ל-cookie
     store: MongoStore.create({
       // שמירת ה-session במסד נתונים MongoDB
-      mongoUrl: process.env.MONGO_CONN + "SessionDb",
+      mongoUrl: process.env.MONGO_CONN + process.env.SESSION_DB,
     }),
   })
 );
