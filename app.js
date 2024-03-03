@@ -26,7 +26,7 @@ connection.connect(() => {
 global.db = connection; // הגדרת משתנה גלובלי עבור מסד הנתונים
 
 const ConnStr = process.env.MONGO_CONN; // השמה של ערך מסד נתונים MongoDB
-mongoose.connect(ConnStr + "webAI").then((status) => {
+mongoose.connect(ConnStr + process.env.MONGO_DB).then((status) => {
   // התחברות למסד נתונים MongoDB
   if (status) console.log("Connected to MongoDB");
   else console.log("Not Connected to MongoDB");
