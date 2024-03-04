@@ -61,7 +61,7 @@ app.use(
     cookie: { maxAge: twentyMin }, // הגדרת תקופת חיים ל-cookie
     store: MongoStore.create({
       // שמירת ה-session במסד נתונים MongoDB
-      mongoUrl: process.env.MONGO_CONN + "SessionDb",
+      mongoUrl: process.env.MONGO_CONN + process.env.SESSION_DB,
     }),
   })
 );
