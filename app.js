@@ -1,10 +1,10 @@
 require("dotenv").config(); // טוען את הקונפיגורציה מהקובץ .env
 const express = require("express"); // ייבוא המודול express
 const morgan = require("morgan"); // ייבוא המודול morgan
+const session = require("express-session"); // ייבוא המודול express-session
 const mongoose = require("mongoose"); // ייבוא המודול mongoose
 mongoose.pluralize(null); // מונע מ-Mongoose להמיר את שמות הדגמים לשמות הקולקציות במסד הנתונים
-const MongoStore = require("connect-mongo"); // ייבוא המודול connect-mongo
-const session = require("express-session"); // ייבוא המודול express-session
+const MongoStore = require("connect-mongo")(session); // ייבוא המודול connect-mongo
 const hbs = require("express-handlebars"); // ייבוא המודול express-handlebars
 const app = express(); // יצירת אפליקציה חדשה באמצעות express
 const mysql = require("mysql"); // ייבוא המודול mysql
