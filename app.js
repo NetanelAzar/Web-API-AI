@@ -49,7 +49,7 @@ app.engine(
 app.use(morgan("dev")); // שימוש ב-morgan עם פורמט "dev"
 app.use(morgan("combined")); // שימוש ב-morgan עם פורמט "combined"
 app.use(express.json()); // פעולה עבור קבלת JSON
-app.use(express.urlencoded()); // פעולה עבור קבלת נתונים בפורמט URL-encoded
+app.use(express.urlencoded({ extended: true })); // פעולה עבור קבלת נתונים בפורמט URL-encoded
 
 const twentyMin = 1000 * 60 * 20; // הגדרת זמן פג תוקף של ה-session
 app.use(
