@@ -25,9 +25,10 @@ connection.connect(() => {
 });
 global.db = connection; // הגדרת משתנה גלובלי עבור מסד הנתונים
 
-const ConnStr = process.env.MONGO_CONN; // השמה של ערך מסד נתונים MongoDB
-mongoose.connect(ConnStr + process.env.MONGO_DB).then((status) => {
-  // התחברות למסד נתונים MongoDB
+//התחברות למסד נתונים
+const ConnStr = process.env.MONGO_CONN;
+console.log(ConnStr);
+mongoose.connect(ConnStr + "DataBaseStore").then((status) => {
   if (status) console.log("Connected to MongoDB");
   else console.log("Not Connected to MongoDB");
 });
