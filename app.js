@@ -92,7 +92,7 @@ app.get("/user", (req, res) => {
     });
 });
 
-app.get("/home", (req, res) => {
+app.get("/", (req, res) => {
   return res.status(200).render("home", { layout: "main", title: "Home" });
 });
 
