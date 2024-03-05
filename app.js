@@ -11,6 +11,7 @@ const mysql = require("mysql"); // ייבוא המודול mysql
 const geminiModel = require("./API/V1/models/gemini"); // ייבוא מודל gemini
 const textRouter = require("./API/V1/routes/text_mongo"); // ייבוא נתיב text_mongo
 const userRoute = require("./API/V1/routes/user"); // ייבוא נתיב user
+const geminiRoute = require("./API/V1/routes/gemini");
 
 const connection = mysql.createConnection({
   // יצירת חיבור למסד נתונים MySQL
@@ -28,7 +29,7 @@ global.db = connection; // הגדרת משתנה גלובלי עבור מסד ה
 //התחברות למסד נתונים
 const ConnStr = process.env.MONGO_CONN;
 console.log(ConnStr);
-mongoose.connect(ConnStr + "DataBaseStore").then((status) => {
+mongoose.connect(ConnStr + process.env.MONGO_DB).then((status) => {
   if (status) console.log("Connected to MongoDB");
   else console.log("Not Connected to MongoDB");
 });
@@ -54,20 +55,19 @@ app.use(express.urlencoded({ extended: true })); // פעולה עבור קבלת
 
 const twentyMin = 1000 * 60 * 20; // הגדרת זמן פג תוקף של ה-session
 app.use(
-  // השמת middleware של session
   session({
-    secret: process.env.PRIVATE_KEY, // מפתח סודי להצפנה
+    secret: process.env.PRIVATE_KEY, // secret key for session encryption
     resave: false,
     saveUninitialized: true,
-    cookie: { maxAge: twentyMin }, // הגדרת תקופת חיים ל-cookie
-    store: MongoStore.create({
-      // שמירת ה-session במסד נתונים MongoDB
+    cookie: { maxAge: twentyMin }, // setting cookie expiration time
+    store: new MongoStore({
+      // storing sessions in MongoDB
       mongoUrl: process.env.MONGO_CONN + process.env.SESSION_DB,
     }),
   })
 );
 
-app.get("/text", (req, res) => {
+/*app.get("/text", (req, res) => {
   // ניתוב GET לנתיב /text
   const text = require("./API/V1/models/text"); // יבוא מודל text
   text
@@ -105,8 +105,10 @@ app.get("/register", (req, res) => {
 app.get("/login", (req, res) => {
   return res.status(200).render("login", { layout: "main", title: "Login" });
 });
+*/
 
-app.use("/", textRouter); // שימוש ב-textRouter עבור הנתיב הראשי
-app.use("/user", userRoute); // שימוש ב-userRoute עבור הנתיב /user
+
+app.use("/text", geminiRoute);
+
 
 module.exports = app; // ייצוא של האפליקציה
