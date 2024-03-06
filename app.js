@@ -114,7 +114,9 @@ app.get("/login", (req, res) => {
 app.get("/register", (req, res) => {
   return res.status(200).render("register", { layout: "main", title: "register" });
 });
-
+app.get("/", (req, res) => {
+  return res.status(200).render("home", { layout: "main", title: "Home" });
+});
 
 // Login user 
 /*app.post("/login", async (req, res) => {
