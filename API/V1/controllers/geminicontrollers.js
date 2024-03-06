@@ -32,7 +32,18 @@ module.exports = {
     return res.status(200).json({ text });
   },
   textGenerator: (req, res) => {
-    return res.status(200).render("text", { layout: "main" });
+      // ניתוב GET לנתיב /text
+  const text = require("../models/text"); // יבוא מודל text
+  text
+    .find()
+    .lean()
+    .then((text) => {
+      // שאילתת מסד נתונים לטקסט
+      return res
+        .status(200)
+        .render("text", { layout: "main", title: "my texts", text }); // תצוגת טקסט
+    });
+    
   },
 
 

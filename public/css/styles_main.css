@@ -128,3 +128,180 @@ footer {
     padding: 10px;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.cardContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.cardAnswer {
+  background-color: #222;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  margin-top: 20px;
+  width: 356px;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  color: #fff;
+  text-align: center;
+  line-height: 1.5;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  /* סקצ'ן Hero */
+  .hero {
+    background-image: url("hero-image.jpg");
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    color: #fff;
+    padding: 200px 0;
+  }
+  
+  .hero h1 {
+    margin-bottom: 10px;
+  }
+  
+  .hero p {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+/* סקצ'ן תכונות */
+.features {
+  background-color: #ffffff57;
+  padding: 20px;
+  width: 70%;
+  margin: 0 auto;
+  border-radius: 30px;
+}
+
+  
+  .features ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .features li {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .features i {
+    font-size: 24px;
+    margin-right: 10px;
+    color: #007bff;
+  }
+  
+  .features h3 {
+    margin-top: 0;
+    margin-bottom: 5px;
+  }
+  
+  .features p {
+    margin-bottom: 0;
+  }
+  
+  /* סקצ'ן עדויות */
+  .testimonials {
+    background-color: #f7f7f7;
+    padding: 20px;
+  }
+  
+  .testimonials blockquote {
+    margin: 0;
+    padding: 20px;
+    border-left: 5px solid #007bff;
+    font-style: italic;
+  }
+  
+  .testimonials p {
+    margin-top: 10px;
+    text-align: right;
+  }
+  
+  /* סקצ'ן קריאה לפעולה */
+  .cta {
+    background-color: #007bff;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .cta a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+  }
+  
+  /* רספונסיביות */
+  @media (max-width: 768px) {
+    .hero {
+      padding: 100px 0;
+    }
+  
+    .features li {
+      margin-bottom: 10px;
+    }
+  }
+
+
+  .features-cards {
+display: flex;
+flex-wrap: wrap;
+margin: 0 -20px;
+}
+
+.cardAI {
+background-color: #fff;
+border-radius: 5px;
+box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+margin: 20px;
+padding: 20px;
+text-align: center;
+width: 300px;
+color:black}
+
+.cardAI i {
+font-size: 36px;
+color: #007bff;
+margin-bottom: 10px;
+}
+
+.cardAI h3 {
+margin-top: 0;
+margin-bottom: 5px;
+}
+
+.cardAI p {
+margin-bottom: 0;
+}
