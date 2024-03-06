@@ -12,6 +12,8 @@ const geminiModel = require("./API/V1/models/gemini"); // ייבוא מודל ge
 const textRouter = require("./API/V1/routes/text_mongo"); // ייבוא נתיב text_mongo
 const userRoute = require("./API/V1/routes/user"); // ייבוא נתיב user
 const geminiRoute = require("./API/V1/routes/gemini");
+const logINRoute = require("./API/V1/routes/logIn");
+
 
 const connection = mysql.createConnection({
   // יצירת חיבור למסד נתונים MySQL
@@ -107,8 +109,48 @@ app.get("/login", (req, res) => {
 });
 */
 
+app.get("/login", (req, res) => {
+  return res.status(200).render("login", { layout: "main", title: "Login" });
+});
+
+
+
+// Login user 
+/*app.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+
+  loginSc.find({ email }).then((results) => {
+    if (results.length === 0) {
+      return res.status(200).json({ message: "Email or Pass not found" });
+    }
+
+    const hashPass = results[0].pass;
+    
+    if (!hashPass || hashPass.length === 0) {
+      return res.status(200).json({ message: "Hashed password not found in database" });
+    }
+
+    bcrypt.compare(password, hashPass).then((status) => {
+      if (!status) {
+        return res.status(200).json({ message: "Email or Pass not found" });
+      }
+    
+      const myUser = results[0];
+      const token = jwt.sign(
+        { email, password, fullName: myUser.fullName },
+        process.env.PRIVATE_KEY,
+        { expiresIn: "1h" }
+      );
+      req.session.user = token;
+      return res.status(200).render("text",{ layout: "main", title: "Login" });
+    });
+  });
+});
+*/
+
 
 app.use("/text", geminiRoute);
+app.use("/login", logINRoute);
 
 
 module.exports = app; // ייצוא של האפליקציה

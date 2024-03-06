@@ -34,6 +34,11 @@ module.exports = {
   textGenerator: (req, res) => {
     return res.status(200).render("text", { layout: "main" });
   },
+
+
+  logIN:(req, res) => {
+    return res.status(200).render("login", { layout: "main" });
+  },
 };
 
 

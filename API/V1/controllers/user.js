@@ -1,4 +1,5 @@
 const User = require("../models/user"); // יבוא מודל user
+const logIn=require("../models/login"); //
 const bcrypt = require("bcrypt"); // יבוא המודול bcrypt
 const jwt = require("jsonwebtoken"); // יבוא המודול jsonwebtoken
 
@@ -77,35 +78,34 @@ module.exports = {
   },
 
   login: (req, res) => {
-    // פונקציה להתחברות משתמש
-    const { email, pass } = req.body; // שליפת פרטי המשתמש מהבקשה
-    User.find({ email }).then((results) => {
-      // מציאת המשתמש לפי האימייל
-      if (results.length == 0)
-        // אם לא נמצא משתמש עם האימייל
-        return res.status(200).json({ message: "Email or Pass not found" }); // החזרת הודעת שגיאה
+    const { email, password } = req.body;
 
-      const hashPass = results[0].pass; // שמירת הסיסמה המוצפנת
-      bcrypt.compare(pass, hashPass).then((status) => {
-        // בדיקת תואמות הסיסמה
-        if (!status)
-          // אם הסיסמה לא תואמת
-          return res.status(200).json({ message: "Email or Pass not found" }); // החזרת הודעת שגיאה
+    logIn.find({ email }).then((results) => {
+    if (results.length === 0) {
+      return res.status(200).json({ message: "Email or Pass not found" });
+    }
 
-        const myUser = results[0]; // שמירת פרטי המשתמש
-        const token = jwt.sign(
-          // יצירת טוקן
-          { email, pass, fullName: myUser.fullName }, // נתונים לכלול בטוקן
-          process.env.PRIVATE_KEY, // מפתח סודי להצפנה
-          {
-            expiresIn: "1h", // תוקף הטוקן
-          }
-        );
-        req.session.user = token; // שמירת הטוקן ב-session
-        return res // החזרת הודעת הצלחה והטוקן בפורמט JSON
-          .status(200)
-          .json({ message: "user login successfully", token });
-      });
+    const hashPass = results[0].pass;
+    
+    if (!hashPass || hashPass.length === 0) {
+      return res.status(200).json({ message: "Hashed password not found in database" });
+    }
+
+    bcrypt.compare(password, hashPass).then((status) => {
+      if (!status) {
+        return res.status(200).json({ message: "Email or Pass not found" });
+      }
+    
+      const myUser = results[0];
+      const token = jwt.sign(
+        { email, password, fullName: myUser.fullName },
+        process.env.PRIVATE_KEY,
+        { expiresIn: "1h" }
+      );
+      req.session.user = token;
+      return res.status(200).render("text",{ layout: "main", title: "Login" });
     });
-  },
+  });
+}
+
 };
