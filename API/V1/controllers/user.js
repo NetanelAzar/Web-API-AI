@@ -51,7 +51,7 @@ module.exports = {
 
   register: (req, res) => {
     // פונקציה לרישום משתמש חדש
-    const { userId, fullName, email, pass, phone } = req.body; // שליפת פרטי המשתמש מהבקשה
+    const { fullName, email, password, phone } = req.body; // שליפת פרטי המשתמש מהבקשה
     User.find({ email }).then((results) => {
       // בדיקה אם כבר קיים משתמש עם כתובת האימייל
       if (results.length > 0) {
@@ -59,18 +59,17 @@ module.exports = {
         return res.status(200).json({ message: "Email is already taken" }); // החזרת הודעת שגיאה
       } else {
         // אם אין משתמש עם כתובת האימייל
-        bcrypt.hash(pass, 10).then((hashPass) => {
+        bcrypt.hash(password, 10).then((hashPass) => {
           // הצפנת הסיסמה
           User.insertMany({
             // הוספת המשתמש החדש למודל user
-            userId,
             fullName,
             email,
             pass: hashPass,
             phone,
           }).then((results) => {
             // החזרת נתונים על הוספת המשתמש בפורמט JSON
-            return res.status(200).json(results);
+            return res.status(200).render("text",{ layout: "main", title: "Login" });
           });
         });
       }

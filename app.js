@@ -8,11 +8,10 @@ const MongoStore = require("connect-mongo"); // ייבוא המודול connect-
 const hbs = require("express-handlebars"); // ייבוא המודול express-handlebars
 const app = express(); // יצירת אפליקציה חדשה באמצעות express
 const mysql = require("mysql"); // ייבוא המודול mysql
-const geminiModel = require("./API/V1/models/gemini"); // ייבוא מודל gemini
-const textRouter = require("./API/V1/routes/text_mongo"); // ייבוא נתיב text_mongo
 const userRoute = require("./API/V1/routes/user"); // ייבוא נתיב user
 const geminiRoute = require("./API/V1/routes/gemini");
 const logINRoute = require("./API/V1/routes/logIn");
+const registerRoute = require("./API/V1/routes/register");
 
 
 const connection = mysql.createConnection({
@@ -112,7 +111,9 @@ app.get("/login", (req, res) => {
 app.get("/login", (req, res) => {
   return res.status(200).render("login", { layout: "main", title: "Login" });
 });
-
+app.get("/register", (req, res) => {
+  return res.status(200).render("register", { layout: "main", title: "register" });
+});
 
 
 // Login user 
@@ -151,6 +152,7 @@ app.get("/login", (req, res) => {
 
 app.use("/text", geminiRoute);
 app.use("/login", logINRoute);
+app.use("/register", registerRoute);
 
 
 module.exports = app; // ייצוא של האפליקציה

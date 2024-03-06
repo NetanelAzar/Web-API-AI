@@ -3,7 +3,6 @@ mongoose.pluralize(null); // הגדרת ייבוס לשמות הטבלאות
 
 const userSchema = new mongoose.Schema({
   // הגדרת סכמה עבור מודל המשתמש
-  userId: Number, // שדה עבור מזהה המשתמש
   fullName: String, // שדה עבור השם המלא של המשתמש
   email: String, // שדה עבור האימייל של המשתמש
   pass: String, // שדה עבור הסיסמה של המשתמש
