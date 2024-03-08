@@ -102,9 +102,12 @@ module.exports = {
         { expiresIn: "1h" }
       );
       req.session.user = token;
-      return res.status(200).render("text",{ layout: "main", title: "Login" });
+      return res.redirect("/text"); 
+    
     });
   });
 }
 
 };
+
+

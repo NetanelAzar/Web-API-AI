@@ -57,10 +57,10 @@ app.use(express.urlencoded({ extended: true })); // פעולה עבור קבלת
 const twentyMin = 1000 * 60 * 20; // הגדרת זמן פג תוקף של ה-session
 app.use(
   session({
-    secret: process.env.PRIVATE_KEY, // secret key for session encryption
+    secret: process.env.PRIVATE_KEY, 
     resave: false,
     saveUninitialized: true,
-    cookie: { maxAge: twentyMin }, // setting cookie expiration time
+    cookie: { maxAge: twentyMin }, 
     store: new MongoStore({
       // storing sessions in MongoDB
       mongoUrl: process.env.MONGO_CONN + process.env.SESSION_DB,
@@ -155,6 +155,7 @@ app.get("/", (req, res) => {
 app.use("/text", geminiRoute);
 app.use("/login", logINRoute);
 app.use("/register", registerRoute);
+
 
 
 module.exports = app; // ייצוא של האפליקציה

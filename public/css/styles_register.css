@@ -1,19 +1,29 @@
+/* עיצוב החלק של "הרשמה" */
+
+#reg {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ccc; /* צבע טקסט לבן */
+  text-align: center;
+  margin-bottom: 20px; /* מרווח מתחת */
+}
+
+/* סגנון dark */
+
 #register {
   max-width: 400px;
   margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
+  padding: 30px;
+  border-radius: 10px;
+  background-color: #222; /* רקע אפור כהה */
+  box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.5); /* צל מעט מודגש */
 }
 
 label {
   font-weight: bold;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+  color: #ccc; /* צבע טקסט לבן */
+  display: block; /* הפרדה של תווית ושדה קלט */
 }
 
 input[type="text"],
@@ -21,26 +31,39 @@ input[type="email"],
 input[type="password"],
 input[type="tel"] {
   width: 100%;
-  padding: 8px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #444; /* גבולות כהים יותר */
   border-radius: 4px;
+  background-color: #333; /* רקע אפור כהה */
+  color: #ccc; /* צבע טקסט לבן */
+  transition: border-color 0.3s ease; /* אנימציה חלקה בעת שינוי צבע הגבול */
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="tel"]:focus {
+  border-color: #5c9be2; /* גבול עם צבע כחול בעת פוקוס */
 }
 
 input[type="submit"] {
-  background-color: #4caf50;
+  background-color: #5c9be2; /* רקע כחול */
   color: white;
-  padding: 10px 20px;
+  padding: 12px 20px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.3s ease; /* אנימציה חלקה בעת שינוי צבע הרקע */
 }
 
 input[type="submit"]:hover {
-  background-color: #45a049;
+  background-color: #4a7db3; /* כחול כהה בעת העברת העכבר */
 }
 
 small {
   font-size: 12px;
-  color: #888;
+  color: #888; /* צבע טקסט קרוב יותר לאפור */
+  margin-top: 5px; /* מרווח קטן למעלה */
+  display: block; /* הפרדה של ההוראות מהשדה */
 }

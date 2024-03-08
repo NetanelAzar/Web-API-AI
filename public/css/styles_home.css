@@ -1,37 +1,146 @@
+/* עיצוב ראשי לעמוד הבית */
 #homeAI {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-  text-align: center;
+  max-width: 800px; /* רוחב מקסימלי */
+  margin: 0 auto; /* מרכז את התוכן באמצע הדף */
+  padding: 20px; /* ריווח מסביב לתוכן */
+  text-align: center; /* מרכז את התוכן לאורך האופק */
 }
 
+/* עיצוב לקופסה הראשית */
 #home-card {
-  background-color: #422929;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #1a1a1a; /* צבע רקע כהה */
+  border-radius: 10px; /* פינות מעגלות */
+  padding: 40px; /* ריווח בתוך הקופסה */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* אפקט צל חזק */
 }
 
+/* עיצוב לטקסט בתוך הקופסה */
 #home-card p {
-  font-size: 18px;
-  color: white;
-  margin-bottom: 30px;
+  font-size: 20px; /* גודל פונט */
+  color: #eee; /* צבע טקסט */
+  margin-bottom: 30px; /* ריווח מתחת לכל פסקה */
 }
 
+/* עיצוב לכפתורים */
 #home-card button {
-  background-color: #4caf50;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
+  background-color: #ff4b2b; /* צבע רקע */
+  color: white; /* צבע טקסט */
+  padding: 15px 30px; /* ריווח בתוך הכפתור */
+  border: none; /* ללא גבולות */
+  border-radius: 5px; /* פינות מעגלות */
+  font-size: 18px; /* גודל פונט */
+  cursor: pointer; /* סמן עכבר ככפתור */
+  transition: background-color 0.3s ease; /* אנימציה לשינוי צבע רקע */
 }
 
+/* אנימציה כאשר העכבר מעביר מעל הכפתור */
 #home-card button:hover {
-  background-color: #45a049;
+  background-color: #ff6b4b; /* צבע רקע במצב hover */
 }
 
+/* סגנון כאשר הכפתור בפוקוס */
 #home-card button:focus {
-  outline: none;
+  outline: none; /* הסר קו תחתון */
 }
+
+
+
+
+
+
+/* עיצוב ראשי לעמוד הבית */
+.hero {
+  text-align: center; /* מרכז את התוכן לאורך האופק */
+  background-color: #282c34; /* צבע רקע כהה */
+  color: #fff; /* צבע טקסט לבן */
+  padding: 50px 20px; /* ריווח מסביב לתוכן */
+}
+
+.hero h1 {
+  font-size: 36px; /* גודל פונט לכותרת */
+  margin-bottom: 20px; /* ריווח מתחת לכותרת */
+}
+
+.features {
+  background-color: #fff; /* צבע רקע לקטע התכונות */
+  padding: 50px 20px; /* ריווח מסביב לתוכן */
+  text-align: center; /* מרכז את התוכן לאורך האופק */
+}
+
+.features h2 {
+  font-size: 24px; /* גודל פונט לכותרת */
+  margin-bottom: 20px; /* ריווח מתחת לכותרת */
+}
+
+.features-cards {
+  display: flex; /* תצוגה של התכונות בשורה אחת */
+  justify-content: space-around; /* מרכז את התכונות במרכז העמוד */
+  flex-wrap: wrap; /* תכונות יחסית נפרדות זו מזו במקרה של רוחב קטן */
+}
+
+.cardAI {
+  flex: 0 0 45%; /* הרחבה מקסימלית עבור הכרטיסיות */
+  background-color: #f8f8f8; /* צבע רקע לכרטיסייה */
+  padding: 20px; /* ריווח בתוך הכרטיסייה */
+  margin-bottom: 20px; /* ריווח מתחת לכרטיסייה */
+  border-radius: 5px; /* פינות מעגלות */
+  color:rgb(19, 1, 1);
+}
+
+.cardAI i {
+  font-size: 36px; /* גודל פונט לסמל */
+  margin-bottom: 10px; /* ריווח מתחת לסמל */
+  color: #ff4b2b; /* צבע סמל */
+}
+
+.cardAI h3 {
+  font-size: 20px; /* גודל פונט לכותרת */
+  margin-bottom: 10px; /* ריווח מתחת לכותרת */
+}
+
+.cardAI p {
+  font-size: 16px; /* גודל פונט לטקסט */
+  color: #555; /* צבע טקסט */
+}
+
+/* עיצוב לחלק הראשי של האתר */
+#homeAI {
+  max-width: 800px; /* רוחב מקסימלי */
+  margin: 0 auto; /* מרכז את התוכן באמצע הדף */
+  padding: 20px; /* ריווח מסביב לתוכן */
+  text-align: center; /* מרכז את התוכן לאורך האופק */
+}
+
+/* עיצוב לקופסה הראשית */
+#home-card {
+  background-color: #1a1a1a; /* צבע רקע כהה */
+  border-radius: 10px; /* פינות מעגלות */
+  padding: 40px; /* ריווח בתוך הקופסה */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* אפקט צל חזק */
+}
+
+/* עיצוב לטקסט בתוך הקופסה */
+#home-card p {
+  font-size: 20px; /* גודל פונט */
+  color: #eee; /* צבע טקסט */
+  margin-bottom: 30px; /* ריווח מתחת לכל פסקה */
+}
+
+/* עיצוב לכפתורים */
+#home-card button {
+
+  background-color: #ff4b2b; /* צבע רקע */
+  color: white; /* צבע טקסט */
+  padding: 15px 30px; /* ריווח בתוך הכפתור */
+  border: none; /* ללא גבולות */
+  border-radius: 5px; /* פינות מעגלות */
+  font-size: 18px; /* גודל פונט */
+  cursor: pointer; /* סמן עכבר ככפתור */
+  transition: background-color 0.3s ease; /* אנימציה ל*/
+
+
+
+
+}
+
+ 
