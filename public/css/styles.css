@@ -1,0 +1,65 @@
+
+  
+  .containerUrl {
+    max-width: 800px;
+    margin: auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+ .containerUrl h1, h2 {
+    color: #333;
+  }
+  
+ .containerUrl form {
+    margin-bottom: 20px;
+  }
+  
+ .containerUrl label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+ .containerUrl input {
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin-bottom: 10px;
+  }
+  
+ .containerUrl button {
+    padding: 8px;
+    cursor: pointer;
+    background-color: #333;
+    color: #fff;
+    border: none;
+  }
+  
+  
+ .containerUrl table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+ .containerUrl th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+    color:  black;
+  }
+  
+ .containerUrl th {
+    background-color: #333;
+    color: #fff;
+  }
+  
+ .containerUrl a {
+    text-decoration: none;
+  
+  }
+  
+.containerUrl  a:hover {
+    text-decoration: underline;
+  }

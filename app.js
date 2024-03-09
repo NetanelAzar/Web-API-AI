@@ -12,6 +12,7 @@ const userRoute = require("./API/V1/routes/user"); // ייבוא נתיב user
 const geminiRoute = require("./API/V1/routes/gemini");
 const logINRoute = require("./API/V1/routes/logIn");
 const registerRoute = require("./API/V1/routes/register");
+const urlRoute = require("./API/V1/routes/url");
 
 
 
@@ -71,7 +72,7 @@ app.use(
 
 
 
-app.get("/", (req, res) => {
+app.get("/home", (req, res) => {
   return res.status(200).render("home", { layout: "main", title: "Home" });
 });
 
@@ -80,6 +81,7 @@ app.use("/text", geminiRoute);
 app.use("/login", logINRoute);
 app.use("/register", registerRoute);
 app.use("/user", userRoute);
+app.use("/", urlRoute);
 
 
 
