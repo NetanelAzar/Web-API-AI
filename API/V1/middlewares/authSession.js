@@ -1,8 +1,8 @@
-const jwt = require("jsonwebtoken");
+const jwt = require("jsonwebtoken"); // יבוא המודול jsonwebtoken
 
-module.exports = (req, res, next) => {
+module.exports = (req, res, next) => { // יצירת מידלוור לאימות משתמש
   try {
-    // קבלת פרטי המשתמש (לדוגמה מתוך גוף הבקשה)
+    // קבלת פרטי המשתמש מהבקשה
     const { email, pass, fullName } = req.body;
 
     // יצירת טוקן JWT
@@ -13,9 +13,9 @@ module.exports = (req, res, next) => {
     // הגדרת הטוקן בסשן
     req.session.user = token;
 
-    next();
+    next(); // המשך לפונקציה הבאה בשרשרת המידלוורים
   } catch (err) {
-    console.log(err);
-    return res.status(401).json({ msg: "Unauthorized" });
+    console.log(err); // במקרה של שגיאה
+    return res.status(401).json({ msg: "Unauthorized" }); // החזרת תשובת שגיאה כאשר הכניסה אינה מורשת
   }
 };

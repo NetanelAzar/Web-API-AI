@@ -9,16 +9,15 @@ const mysql = require("mysql"); // ייבוא המודול mysql
 const app = express(); // יצירת אפליקציה חדשה באמצעות express
 const hbs = require("express-handlebars"); // ייבוא המודול express-handlebars
 
-
+// ייבוא נתיבי המשתמשים
 const userRoute = require("./API/V1/routes/user"); // ייבוא נתיב user
 const geminiRoute = require("./API/V1/routes/gemini");
 const logINRoute = require("./API/V1/routes/logIn");
 const registerRoute = require("./API/V1/routes/register");
 const urlRoute = require("./API/V1/routes/url");
 
-
-
-const connection = mysql.createConnection({ // יצירת חיבור למסד נתונים MySQL
+// יצירת חיבור למסד נתונים MySQL
+const connection = mysql.createConnection({
   host: "127.0.0.1",
   user: process.env.MYSQL_USER,
   password: process.env.MYSQL_PRIVATE_PASS,
@@ -45,8 +44,8 @@ app.use(morgan("combined")); // שימוש ב-morgan עם פורמט "combined"
 app.use(express.json()); // פעולה עבור קבלת JSON
 app.use(express.urlencoded({ extended: true })); // פעולה עבור קבלת נתונים בפורמט URL-encoded
 
-
-app.engine( // הגדרת מנוע התצוגה של Handlebars
+// הגדרת מנוע התצוגה של Handlebars
+app.engine(
   "hbs",
   hbs.engine({
     extname: "hbs",
@@ -56,9 +55,9 @@ app.engine( // הגדרת מנוע התצוגה של Handlebars
   })
 );
 
-
-
 const twentyMin = 1000 * 60 * 20; // הגדרת זמן פג תוקף של ה-session
+
+// שימוש ב-session והגדרת הגדרות שונות עבורו
 app.use(
   session({
     secret: process.env.PRIVATE_KEY, 
@@ -71,18 +70,16 @@ app.use(
   })
 );
 
-
-
+// מסלול הבית
 app.get("/home", (req, res) => {
   return res.status(200).render("home", { layout: "main", title: "Home" });
 });
 
-
+// שימוש בנתיבי ה-API
 app.use("/text", geminiRoute);
 app.use("/login", logINRoute);
 app.use("/register", registerRoute);
 app.use("/user", userRoute);
 app.use("/", urlRoute);
-
 
 module.exports = app; // ייצוא של האפליקציה
