@@ -1,3 +1,4 @@
+
 const User = require("../models/user"); // יבוא מודל user
 const logIn=require("../models/login"); //
 const bcrypt = require("bcrypt"); // יבוא המודול bcrypt
@@ -6,9 +7,13 @@ const jwt = require("jsonwebtoken"); // יבוא המודול jsonwebtoken
 module.exports = {
   getAllUsers: (req, res) => {
     // פונקציה לקבלת כל המשתמשים
-    User.find().then((data) => {
-      // מציאת כל המשתמשים במודל user
-      return res.status(200).json(data); // החזרת נתוני המשתמשים בפורמט JSON
+    
+    User.find()
+    .lean()
+    .then((user) => {
+      return res
+        .status(200)
+        .render("user", { layout: "main", title: "user", user }); //main
     });
   },
 
@@ -69,7 +74,8 @@ module.exports = {
             phone,
           }).then((results) => {
             // החזרת נתונים על הוספת המשתמש בפורמט JSON
-            return res.status(200).render("text",{ layout: "main", title: "Login" });
+            return res.status(200).render("login",{ layout: "main", title: "Login" });
+
           });
         });
       }
@@ -103,11 +109,8 @@ module.exports = {
       );
       req.session.user = token;
       return res.redirect("/text"); 
-    
     });
   });
 }
 
 };
-
-

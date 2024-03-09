@@ -1,6 +1,11 @@
 const routes = require("express").Router();
 const { register } = require("../controllers/user");
-routes.post("/", register);
+routes.get("/", (req, res) => {
+    return res
+      .status(200)
+      .render("register", { layout: "main", title: "Register" });
+  }).post("/", register);
 
 
 module.exports = routes;
+
