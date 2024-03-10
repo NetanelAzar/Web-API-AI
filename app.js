@@ -111,13 +111,8 @@ const uploadPics=multer({
 // המשתמש מועבר לכאן לאחר שהוא שולח את הטופס
 app.post('/', uploadPics.single('picture'), (req, res) => {
 
-
-
 console.log(req.body);
 return res.status(200).json({msg:req.body});
-
-
-
 });
 
 
@@ -142,8 +137,10 @@ app.get("/contact", (req, res) => {
   return res.status(200).render("contact", { layout: "main", title: "contact" });
 });
 
-const User = require("./API/V1/models/user"); // Importing the User model
 
+
+
+const User = require("./API/V1/models/user"); // Importing the User model
 app.get("/admin", (req, res) => {
     // Function to get all users
     User.find()
