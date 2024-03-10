@@ -1,19 +1,6 @@
 const mysql = require('mysql'); // משתנה לקריאת המודול mysql
 
-const connection = mysql.createConnection({ // הגדרת חיבור לבסיס הנתונים
-  host: 'localhost', // כתובת המארח
-  user: 'your_username', // שם המשתמש להתחברות לבסיס הנתונים
-  password: 'your_password', // סיסמת המשתמש להתחברות לבסיס הנתונים
-  database: 'your_database' // שם הבסיס הנתונים
-});
-
-connection.connect((err) => { // פתיחת חיבור לבסיס הנתונים
-  if (err) {
-    console.error('Error connecting to database:', err); // במקרה של שגיאה בחיבור
-    return;
-  }
-  console.log('Connected to MySQL database'); // במקרה של הצלחה בחיבור
-});
+const connection = global.db;
 
 module.exports = { // ייצוא הפונקציות המוגדרות
   getAllUsers: (req, res) => { // פונקציה לקבלת כל המשתמשים מהבסיס

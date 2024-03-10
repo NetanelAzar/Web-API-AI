@@ -19,3 +19,25 @@ module.exports = (req, res, next) => { // יצירת מידלוור לאימות
     return res.status(401).json({ msg: "Unauthorized" }); // החזרת תשובת שגיאה כאשר הכניסה אינה מורשת
   }
 };
+
+
+// Function to count online users
+function countOnlineUsers(sessionStore) {
+  let onlineUsersCount = 0;
+  // Iterating through all active sessions and counting online users
+  sessionStore.all((err, sessions) => {
+      if (err) {
+          console.error("Error counting online users:", err);
+          return;
+      }
+      for (let sessionID in sessions) {
+          if (sessions[sessionID].user && sessions[sessionID].user.online) {
+              onlineUsersCount++;
+          }
+      }
+  });
+  return onlineUsersCount;
+}
+
+
+module.exports =countOnlineUsers;

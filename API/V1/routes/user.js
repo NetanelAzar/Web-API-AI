@@ -10,7 +10,7 @@ const {
   login,
 } = require("../controllers/user");
 
-routes.get("/",session , getAllUsers);
+routes.get("/", getAllUsers);
 routes.get("/:id", getUserById);
 routes.post("/", addUser);
 routes.patch("/:id", updateUser);

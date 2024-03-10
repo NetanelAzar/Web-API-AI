@@ -5,6 +5,7 @@ const session = require("express-session"); // ייבוא המודול express-s
 const mongoose = require("mongoose"); // ייבוא המודול mongoose
 mongoose.pluralize(null); // מונע מ-Mongoose להמיר את שמות הדגמים לשמות הקולקציות במסד הנתונים
 const MongoStore = require("connect-mongo"); // ייבוא המודול connect-mongo
+const multer=require('multer');
 const mysql = require("mysql"); // ייבוא המודול mysql
 const app = express(); // יצירת אפליקציה חדשה באמצעות express
 const hbs = require("express-handlebars"); // ייבוא המודול express-handlebars
@@ -70,10 +71,96 @@ app.use(
   })
 );
 
+
+
+
+
+
+
+
+//יוצר שכבת ביניים
+
+const storage=multer.diskStorage({//
+  destination:(req,file,cb) => {
+  if(file.fieldname=="picture"){
+  
+      cb(null,'uploads/pics/')
+  }
+   else if(file.fieldname=="video")
+      cb(null,'uploads/video/');
+      
+  else
+   cb(null,'uploads/documents/');
+      
+  },
+  filename:(req,file,cb)=>{
+      let filename=Math.floor(Math.random()*100000);
+      let fileExtension=file.originalname.split('.').pop();
+      cb(null,filename +"."+fileExtension)
+  }
+});
+
+
+
+const uploadPics=multer({
+  storage:storage
+})
+
+
+
+// המשתמש מועבר לכאן לאחר שהוא שולח את הטופס
+app.post('/', uploadPics.single('picture'), (req, res) => {
+
+
+
+console.log(req.body);
+return res.status(200).json({msg:req.body});
+
+
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // מסלול הבית
 app.get("/home", (req, res) => {
   return res.status(200).render("home", { layout: "main", title: "Home" });
 });
+// מסלול הבית
+app.get("/contact", (req, res) => {
+  return res.status(200).render("contact", { layout: "main", title: "contact" });
+});
+
+const User = require("./API/V1/models/user"); // Importing the User model
+
+app.get("/admin", (req, res) => {
+    // Function to get all users
+    User.find()
+        .lean()
+        .then((users) => {
+            return res.status(200).render("admin", { layout: "main", title: "admin", users: users });
+        })
+        .catch((err) => {
+            // Handle errors if any
+            console.error(err);
+            return res.status(500).send("Internal Server Error");
+        });
+
+
+    
+});
+
 
 // שימוש בנתיבי ה-API
 app.use("/text", geminiRoute);

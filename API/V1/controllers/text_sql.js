@@ -1,19 +1,4 @@
-const mysql = require('mysql'); // יבוא הספריה של MySQL שישמשה ליצירת חיבור למסד הנתונים
-
-const connection = mysql.createConnection({ // יצירת חיבור למסד הנתונים
-  host: 'localhost', // כתובת המארח של מסד הנתונים
-  user: 'your_username', // שם המשתמש למסד הנתונים
-  password: 'your_password', // סיסמת המשתמש למסד הנתונים
-  database: 'your_database' // שם המסד הנתונים שבו נרצה לבצע פעולות
-});
-
-connection.connect((err) => { // בדיקה של התחברות למסד הנתונים
-  if (err) {
-    console.error('Error connecting to database:', err); // במקרה של שגיאה בהתחברות
-    return;
-  }
-  console.log('Connected to MySQL database'); // במקרה של התחברות הצליחה
-});
+const connection = global.db;
 
 module.exports = {
   getText: async (req, res) => { // פונקציה לקבלת טקסט מ-Google Generative AI ושמירתו במסד הנתונים

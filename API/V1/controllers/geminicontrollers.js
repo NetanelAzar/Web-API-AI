@@ -28,8 +28,9 @@ module.exports = {
       // ////////////////////////////////////////////////////
       await textDB.save();
     
-    
+     
     return res.status(200).json({ text });
+    
   },
   textGenerator: (req, res) => {
       // ניתוב GET לנתיב /text
