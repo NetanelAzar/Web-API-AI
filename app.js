@@ -5,7 +5,6 @@ const session = require("express-session"); // ייבוא המודול express-s
 const mongoose = require("mongoose"); // ייבוא המודול mongoose
 mongoose.pluralize(null); // מונע מ-Mongoose להמיר את שמות הדגמים לשמות הקולקציות במסד הנתונים
 const MongoStore = require("connect-mongo"); // ייבוא המודול connect-mongo
-const multer=require('multer');
 const mysql = require("mysql"); // ייבוא המודול mysql
 const app = express(); // יצירת אפליקציה חדשה באמצעות express
 const hbs = require("express-handlebars"); // ייבוא המודול express-handlebars
@@ -16,6 +15,7 @@ const geminiRoute = require("./API/V1/routes/gemini");
 const logINRoute = require("./API/V1/routes/logIn");
 const registerRoute = require("./API/V1/routes/register");
 const urlRoute = require("./API/V1/routes/url");
+const homeRoute = require("./API/V1/routes/home");
 
 // יצירת חיבור למסד נתונים MySQL
 const connection = mysql.createConnection({
@@ -38,7 +38,7 @@ mongoose.connect(ConnStr + process.env.MONGO_DB).then((status) => {
 
 app.set("view engine", "hbs"); // הגדרת סוג קובץ התצוגה
 app.use(express.static("public")); // שימוש בקבצים סטטיים בתיקיית public
-app.use("/assets/", express.static("public")); // שימוש בקבצים סטטיים בנתיב /assets/
+
 
 app.use(morgan("dev")); // שימוש ב-morgan עם פורמט "dev"
 app.use(morgan("combined")); // שימוש ב-morgan עם פורמט "combined"
@@ -78,84 +78,133 @@ app.use(
 
 
 
-//יוצר שכבת ביניים
 
-const storage=multer.diskStorage({//
-  destination:(req,file,cb) => {
-  if(file.fieldname=="picture"){
-  
-      cb(null,'uploads/pics/')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var nodemailer = require('nodemailer');
+
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS
   }
-   else if(file.fieldname=="video")
-      cb(null,'uploads/video/');
-      
-  else
-   cb(null,'uploads/documents/');
-      
-  },
-  filename:(req,file,cb)=>{
-      let filename=Math.floor(Math.random()*100000);
-      let fileExtension=file.originalname.split('.').pop();
-      cb(null,filename +"."+fileExtension)
+});
+
+var mailOptions = {
+  from:'netanelazar880@gmail.com' ,
+  to: 'netanelazar880@gmail.com',
+  subject: 'Sending Email using Node.js',
+  text: 'That was easy!'
+};
+
+transporter.sendMail(mailOptions, function(error, info){
+  if (error) {
+    console.log(error);
+  } else {
+    console.log('Email sent: ' + info.response);
   }
 });
 
 
 
-const uploadPics=multer({
-  storage:storage
-})
 
 
 
-// המשתמש מועבר לכאן לאחר שהוא שולח את הטופס
-app.post('/', uploadPics.single('picture'), (req, res) => {
 
-console.log(req.body);
-return res.status(200).json({msg:req.body});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const User = require("./API/V1/models/user"); // 
+const Text = require("./API/V1/models/text"); // 
+const Url = require("./API/V1/models/urlModel"); // 
+app.get("/admin", async (req, res) => {
+  try {
+    const text = await Text.find().lean();
+    const url = await Url.find().lean();
+      const users = await User.find().lean();
+      return res.status(200).render("admin", { layout: "index", title: "admin", users,text,url });
+  } catch (err) {
+      console.error(err);
+      return res.status(500).send("Internal Server Error");
+  }
+
+});
+app.get("/text_admin", async (req, res) => {
+  try {
+    const text = await Text.find().lean();
+    const url = await Url.find().lean();
+      const users = await User.find().lean();
+      return res.status(200).render("text_admin", { layout: "index", title: "admin", users,text,url });
+  } catch (err) {
+      console.error(err);
+      return res.status(500).send("Internal Server Error");
+  }
+
+});
+app.get("/shorturls", async (req, res) => {
+  try {
+
+    const urls = await Url.find().lean();
+      
+      return res.status(200).render("shorturls", { layout: "index", title: "admin", urls });
+  } catch (err) {
+      console.error(err);
+      return res.status(500).send("Internal Server Error");
+  }
+
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-// מסלול הבית
-app.get("/home", (req, res) => {
-  return res.status(200).render("home", { layout: "main", title: "Home" });
-});
-// מסלול הבית
+// מסלול יצירת קשר
 app.get("/contact", (req, res) => {
-  return res.status(200).render("contact", { layout: "main", title: "contact" });
+  return res.status(200).render("contact", { layout: "main", title: "contact", username: req.session.user });
+});
+// מסלול יצירת קשר
+app.get("/users_admin", async (req, res) => {
+  const users = await User.find().lean();
+  return res.status(200).render("users_admin", { layout: "index", title: "admin", users });
 });
 
-
-
-
-const User = require("./API/V1/models/user"); // Importing the User model
-app.get("/admin", (req, res) => {
-    // Function to get all users
-    User.find()
-        .lean()
-        .then((users) => {
-            return res.status(200).render("admin", { layout: "main", title: "admin", users: users });
-        })
-        .catch((err) => {
-            // Handle errors if any
-            console.error(err);
-            return res.status(500).send("Internal Server Error");
-        });
-
-
-    
+app.get("/add_admin", async (req, res) => {
+  const users = await User.find().lean();
+  return res.status(200).render("add_admin", { layout: "index", title: "admin", users });
 });
 
 
@@ -164,6 +213,7 @@ app.use("/text", geminiRoute);
 app.use("/login", logINRoute);
 app.use("/register", registerRoute);
 app.use("/user", userRoute);
-app.use("/", urlRoute);
+app.use("/url", urlRoute);
+app.use("/", homeRoute);
 
 module.exports = app; // ייצוא של האפליקציה

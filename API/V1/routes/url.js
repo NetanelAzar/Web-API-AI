@@ -9,7 +9,7 @@ getShortUrl
 
 
 
-routes.get('/url', getUrl);
+routes.get('/', getUrl);
 
 routes.post('/shorten', addShorten);
 

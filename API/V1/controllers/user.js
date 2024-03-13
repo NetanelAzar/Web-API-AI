@@ -72,6 +72,7 @@ module.exports = {
             email,
             pass: hashPass,
             phone,
+           /// picname,
           }).then((results) => {
             // החזרת נתונים על הוספת המשתמש בפורמט JSON
             return res.status(200).render("login",{ layout: "main", title: "Login" });
@@ -108,9 +109,22 @@ module.exports = {
         { expiresIn: "1h" }
       );
       req.session.user = token;
-      return res.redirect("/text"); 
+      return res.render("text", { layout: "main", title: "Login", username: myUser.fullName });
+ 
     });
   });
-}
+},
+
+
+
+
+
+
+
+
+
+
+
+
 
 };

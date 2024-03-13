@@ -5,7 +5,7 @@ module.exports = {
    getUrl: async (req, res) => { // פונקציה לקבלת רשימת כל ה-URLs
         try {
             const urls = await Url.find().lean(); // קריאה למודל ושליפת רשימת ה-URLs
-            return res.status(200).render('shorturls', { layout: 'main', title: 'URL Shortener', urls }); // החזרת רשימת ה-URLs לתבנית צוברת
+            return res.status(200).render('shorturls', { layout: 'main', title: 'URL Shortener' ,urls }); // החזרת רשימת ה-URLs לתבנית צוברת
         } catch (error) {
             res.status(500).send('Internal server error'); // במקרה של שגיאה בשליפת הנתונים
         }

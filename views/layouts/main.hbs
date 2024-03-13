@@ -3,22 +3,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Startup Company Landing Page</title>
-    <link rel="stylesheet" type="text/css" href="/assets/css/styles_main.css" />
+    <link rel="stylesheet" type="text/css" href="/css/styles_main.css" />
     <link
       rel="stylesheet"
       type="text/css"
-      href="/assets/css/styles_register.css"
+      href="/css/styles_register.css"
     />
-    <link rel="stylesheet" type="text/css" href="/assets/css/styles_home.css" />
+    <link rel="stylesheet" type="text/css" href="/css/styles_home.css" />
     <link
       rel="stylesheet"
       type="text/css"
-      href="/assets/css/styles_login.css"
+      href="/css/styles_login.css"
     />
    <link
       rel="stylesheet"
       type="text/css"
-      href="/assets/css/styles.css"
+      href="/css/styles.css"
     />
   </head>
   <body>
@@ -27,18 +27,18 @@
       <p>We are here to revolutionize the industry!</p>
     </header>
     <nav>
-      <a href="/home">Home</a>
+      <a href="/">Home</a>
       <a href="/admin">Administrators</a>
       <a href="/text">GeminiAI</a>
       <a href="/url">ShortURL</a>
       <a href="/contact">Contact</a>
+  <span class="username">{{username}}</span>
+
+
     </nav>
 
     {{{body}}}
 
-    <footer>
-      <p>&copy; 2024 Netanel Azar. All rights reserved.</p>
-    </footer>
-
+{{> footer}}
   </body>
 </html>
