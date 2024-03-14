@@ -11,7 +11,7 @@ module.exports = {
       model: "gemini-pro",
     });
 
-    const prompt = req.body.Prompt;
+    const prompt = req.body.prompt;
     console.log(req.body);
     const result = await geminiModel.generateContent(prompt);
     const response = await result.response;

@@ -21,23 +21,25 @@ module.exports = (req, res, next) => { // יצירת מידלוור לאימות
 };
 
 
-// Function to count online users
-function countOnlineUsers(sessionStore) {
+
+// Middleware function
+const middlewareFunction = (req, res, next) => {
   let onlineUsersCount = 0;
   // Iterating through all active sessions and counting online users
-  sessionStore.all((err, sessions) => {
+  req.sessionStore.all((err, sessions) => {
       if (err) {
           console.error("Error counting online users:", err);
-          return;
+          return next(err);
       }
       for (let sessionID in sessions) {
           if (sessions[sessionID].user && sessions[sessionID].user.online) {
               onlineUsersCount++;
           }
       }
+      console.log('מספר המשתמשים המחוברים ברגע זמן זה:', onlineUsersCount);
+      // Continue with your logic here
+      next();
   });
-  return onlineUsersCount;
-}
+};
 
-
-module.exports =countOnlineUsers;
+module.exports = middlewareFunction;

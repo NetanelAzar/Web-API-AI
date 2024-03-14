@@ -9,6 +9,8 @@ const mysql = require("mysql"); // ייבוא המודול mysql
 const app = express(); // יצירת אפליקציה חדשה באמצעות express
 const hbs = require("express-handlebars"); // ייבוא המודול express-handlebars
 
+
+
 // ייבוא נתיבי המשתמשים
 const userRoute = require("./API/V1/routes/user"); // ייבוא נתיב user
 const geminiRoute = require("./API/V1/routes/gemini");
@@ -16,6 +18,8 @@ const logINRoute = require("./API/V1/routes/logIn");
 const registerRoute = require("./API/V1/routes/register");
 const urlRoute = require("./API/V1/routes/url");
 const homeRoute = require("./API/V1/routes/home");
+const contactRoute = require("./API/V1/routes/contact")
+
 
 // יצירת חיבור למסד נתונים MySQL
 const connection = mysql.createConnection({
@@ -70,12 +74,6 @@ app.use(
     }),
   })
 );
-
-
-
-
-
-
 
 
 
@@ -192,10 +190,36 @@ app.get("/shorturls", async (req, res) => {
 
 });
 
-// מסלול יצירת קשר
-app.get("/contact", (req, res) => {
-  return res.status(200).render("contact", { layout: "main", title: "contact", username: req.session.user });
+
+
+
+
+
+
+
+
+
+
+app.get("/logout", (req, res) => {
+  // נקיה של הנתונים המזוהים עם המשתמש המחובר מהמאפיין `req.session`.
+  req.session.destroy((err) => {
+    if (err) {
+      console.error("Error destroying session:", err);
+      return res.status(500).send("Internal Server Error");
+    }
+    // הפניה אל דף ההתחברות (login page) או דף אחר בו המשתמש יכול להתחבר מחדש.
+    res.redirect("/login"); // דוגמה לפנייה אל דף ההתחברות
+  });
 });
+
+
+
+
+
+
+
+
+
 // מסלול יצירת קשר
 app.get("/users_admin", async (req, res) => {
   const users = await User.find().lean();
@@ -209,11 +233,14 @@ app.get("/add_admin", async (req, res) => {
 
 
 // שימוש בנתיבי ה-API
+
+
+app.use("/contact",contactRoute );
 app.use("/text", geminiRoute);
 app.use("/login", logINRoute);
 app.use("/register", registerRoute);
 app.use("/user", userRoute);
 app.use("/url", urlRoute);
-app.use("/", homeRoute);
+app.use("/",homeRoute);
 
 module.exports = app; // ייצוא של האפליקציה

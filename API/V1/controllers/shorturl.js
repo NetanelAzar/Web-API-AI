@@ -1,15 +1,30 @@
 const Url = require('../models/urlModel'); // יבוא המודל של ה-URL
-
+const jwt = require('jsonwebtoken');
 module.exports = {
-
-   getUrl: async (req, res) => { // פונקציה לקבלת רשימת כל ה-URLs
+    getUrl: async (req, res) => { 
+    
         try {
-            const urls = await Url.find().lean(); // קריאה למודל ושליפת רשימת ה-URLs
-            return res.status(200).render('shorturls', { layout: 'main', title: 'URL Shortener' ,urls }); // החזרת רשימת ה-URLs לתבנית צוברת
+            // קבלת רשימת כל ה-URLs
+            const urls = await Url.find().lean();
+    
+            // פענוח הטוקן המוצפן ב-session על מנת לקבל את שם המשתמש
+            jwt.verify(req.session.user, process.env.PRIVATE_KEY, (err, decoded) => {
+                if (err) {
+                    console.error(err);
+                    return res.status(401).render("home", { layout: "main", title: "homer" });
+                } else {
+                    // אם הפענוח הצליח, מידע המזוהה עם המשתמש מוצג בתבנית התצוגה "shorturls"
+                    const fullName = decoded.fullName;
+                    return res.status(200).render("shorturls", { layout: "main", title: "URL Shortener", urls, username: fullName });
+                }
+            });
         } catch (error) {
-            res.status(500).send('Internal server error'); // במקרה של שגיאה בשליפת הנתונים
+            // במקרה של שגיאה בשליפת הנתונים
+            console.error(error);
+            return res.status(500).send('Internal server error');
         }
     },
+    
 
    addShorten: async (req, res) => { // פונקציה להוספת קיצור URL חדש
         try {

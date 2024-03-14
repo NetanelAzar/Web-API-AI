@@ -1,8 +1,16 @@
-
 const User = require("../models/user"); // יבוא מודל user
-const logIn=require("../models/login"); //
+const logIn = require("../models/login"); //
 const bcrypt = require("bcrypt"); // יבוא המודול bcrypt
 const jwt = require("jsonwebtoken"); // יבוא המודול jsonwebtoken
+const nodemailer = require('nodemailer');
+
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS
+  }
+});
 
 module.exports = {
   getAllUsers: (req, res) => {
@@ -74,46 +82,77 @@ module.exports = {
             phone,
            /// picname,
           }).then((results) => {
+            // שליחת איימיל למשתמש שנרשם
+            const mailOptions = {
+              from: 'netanelazar880@gmail.com',
+              to: email,
+              subject: 'Welcome to our website!',
+              text: 'Thank you for registering with us.'
+            };
+
+            transporter.sendMail(mailOptions, function(error, info) {
+              if (error) {
+                console.log(error);
+              } else {
+                console.log('Email sent: ' + info.response);
+              }
+            });
+
             // החזרת נתונים על הוספת המשתמש בפורמט JSON
             return res.status(200).render("login",{ layout: "main", title: "Login" });
-
           });
         });
       }
     });
   },
-
   login: (req, res) => {
     const { email, password } = req.body;
 
+    // בדיקה אם האימייל והסיסמה נשלחו בבקשה
+    if (!email || !password) {
+        return res.status(400).json({ message: "Email and password are required" });
+    }
+
     logIn.find({ email }).then((results) => {
-    if (results.length === 0) {
-      return res.status(200).json({ message: "Email or Pass not found" });
-    }
+        // אם לא נמצאו תוצאות עבור האימייל
+        if (results.length === 0) {
+            return res.status(404).json({ message: "Email or password incorrect" });
+        }
 
-    const hashPass = results[0].pass;
-    
-    if (!hashPass || hashPass.length === 0) {
-      return res.status(200).json({ message: "Hashed password not found in database" });
-    }
+        const hashPass = results[0].pass;
 
-    bcrypt.compare(password, hashPass).then((status) => {
-      if (!status) {
-        return res.status(200).json({ message: "Email or Pass not found" });
-      }
-    
-      const myUser = results[0];
-      const token = jwt.sign(
-        { email, password, fullName: myUser.fullName },
-        process.env.PRIVATE_KEY,
-        { expiresIn: "1h" }
-      );
-      req.session.user = token;
-      return res.render("text", { layout: "main", title: "Login", username: myUser.fullName });
- 
+        // בדיקה אם לא נמצאה סיסמה מוצפנת בבסיס הנתונים
+        if (!hashPass || hashPass.length === 0) {
+            return res.status(500).json({ message: "Hashed password not found in database" });
+        }
+
+        // השוואת הסיסמה הקלה לסיסמה המוצפנת
+        bcrypt.compare(password, hashPass).then((status) => {
+            if (!status) {
+                return res.status(401).json({ message: "Email or password incorrect" });
+            }
+
+            // אם הכל תקין - יצירת טוקן
+            const myUser = results[0];
+            const token = jwt.sign(
+                { email, password, fullName: myUser.fullName },
+                process.env.PRIVATE_KEY,
+                { expiresIn: "1h" }
+            );
+            // שמירת הטוקן בסשן
+            req.session.user = token;
+            // החזרת דף "text" עם הפרטים המתאימים
+            return res.render("text", { layout: "main", title: "text", username: myUser.fullName });
+        }).catch((error) => {
+            console.error("Error comparing passwords:", error);
+            return res.status(500).json({ message: "Internal server error" });
+        });
+    }).catch((error) => {
+        console.error("Error fetching user data:", error);
+        return res.status(500).json({ message: "Internal server error" });
     });
-  });
 },
+
 
 
 
