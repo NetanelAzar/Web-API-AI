@@ -8,11 +8,14 @@ const MongoStore = require("connect-mongo"); // ייבוא המודול connect-
 const mysql = require("mysql"); // ייבוא המודול mysql
 const app = express(); // יצירת אפליקציה חדשה באמצעות express
 const hbs = require("express-handlebars"); // ייבוא המודול express-handlebars
+const axios = require('axios');
+const cheerio = require('cheerio');
 
-
+const twentyMin = 1000 * 60 * 20; // הגדרת זמן פג תוקף של ה-session
 
 // ייבוא נתיבי המשתמשים
 const userRoute = require("./API/V1/routes/user"); // ייבוא נתיב user
+const adminRoute =require("./API/V1/routes/admin")
 const geminiRoute = require("./API/V1/routes/gemini");
 const logINRoute = require("./API/V1/routes/logIn");
 const registerRoute = require("./API/V1/routes/register");
@@ -60,7 +63,6 @@ app.engine(
   })
 );
 
-const twentyMin = 1000 * 60 * 20; // הגדרת זמן פג תוקף של ה-session
 
 // שימוש ב-session והגדרת הגדרות שונות עבורו
 app.use(
@@ -137,69 +139,6 @@ transporter.sendMail(mailOptions, function(error, info){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-const User = require("./API/V1/models/user"); // 
-const Text = require("./API/V1/models/text"); // 
-const Url = require("./API/V1/models/urlModel"); // 
-app.get("/admin", async (req, res) => {
-  try {
-    const text = await Text.find().lean();
-    const url = await Url.find().lean();
-      const users = await User.find().lean();
-      return res.status(200).render("admin", { layout: "index", title: "admin", users,text,url });
-  } catch (err) {
-      console.error(err);
-      return res.status(500).send("Internal Server Error");
-  }
-
-});
-app.get("/text_admin", async (req, res) => {
-  try {
-    const text = await Text.find().lean();
-    const url = await Url.find().lean();
-      const users = await User.find().lean();
-      return res.status(200).render("text_admin", { layout: "index", title: "admin", users,text,url });
-  } catch (err) {
-      console.error(err);
-      return res.status(500).send("Internal Server Error");
-  }
-
-});
-app.get("/shorturls", async (req, res) => {
-  try {
-
-    const urls = await Url.find().lean();
-      
-      return res.status(200).render("shorturls", { layout: "index", title: "admin", urls });
-  } catch (err) {
-      console.error(err);
-      return res.status(500).send("Internal Server Error");
-  }
-
-});
-
-
-
-
-
-
-
-
-
-
-
 app.get("/logout", (req, res) => {
   // נקיה של הנתונים המזוהים עם המשתמש המחובר מהמאפיין `req.session`.
   req.session.destroy((err) => {
@@ -217,23 +156,7 @@ app.get("/logout", (req, res) => {
 
 
 
-
-
-
-// מסלול יצירת קשר
-app.get("/users_admin", async (req, res) => {
-  const users = await User.find().lean();
-  return res.status(200).render("users_admin", { layout: "index", title: "admin", users });
-});
-
-app.get("/add_admin", async (req, res) => {
-  const users = await User.find().lean();
-  return res.status(200).render("add_admin", { layout: "index", title: "admin", users });
-});
-
-
 // שימוש בנתיבי ה-API
-
 
 app.use("/contact",contactRoute );
 app.use("/text", geminiRoute);
@@ -241,6 +164,7 @@ app.use("/login", logINRoute);
 app.use("/register", registerRoute);
 app.use("/user", userRoute);
 app.use("/url", urlRoute);
+app.use("/admin",adminRoute)
 app.use("/",homeRoute);
 
 module.exports = app; // ייצוא של האפליקציה

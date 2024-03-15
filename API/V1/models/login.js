@@ -4,6 +4,7 @@ mongoose.pluralize(null);
 const loginSchema = new mongoose.Schema({
     email: String,
     pass: String,
+
 });
 
 // בדוגמה הזו, אנו בודקים אם המודל כבר הוגדר. אם כן, אז נשתמש בו; אם לא, נגדיר אותו.

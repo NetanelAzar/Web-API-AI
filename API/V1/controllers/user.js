@@ -64,7 +64,7 @@ module.exports = {
 
   register: (req, res) => {
     // פונקציה לרישום משתמש חדש
-    const { fullName, email, password, phone } = req.body; // שליפת פרטי המשתמש מהבקשה
+    const { fullName, email, password, phone,isAdmin } = req.body; // שליפת פרטי המשתמש מהבקשה
     User.find({ email }).then((results) => {
       // בדיקה אם כבר קיים משתמש עם כתובת האימייל
       if (results.length > 0) {
@@ -80,6 +80,7 @@ module.exports = {
             email,
             pass: hashPass,
             phone,
+            isAdmin,
            /// picname,
           }).then((results) => {
             // שליחת איימיל למשתמש שנרשם
@@ -106,7 +107,7 @@ module.exports = {
     });
   },
   login: (req, res) => {
-    const { email, password } = req.body;
+    const { email, password, isAdmin } = req.body;
 
     // בדיקה אם האימייל והסיסמה נשלחו בבקשה
     if (!email || !password) {
@@ -134,6 +135,7 @@ module.exports = {
 
             // אם הכל תקין - יצירת טוקן
             const myUser = results[0];
+            
             const token = jwt.sign(
                 { email, password, fullName: myUser.fullName },
                 process.env.PRIVATE_KEY,
@@ -141,8 +143,15 @@ module.exports = {
             );
             // שמירת הטוקן בסשן
             req.session.user = token;
-            // החזרת דף "text" עם הפרטים המתאימים
-            return res.render("text", { layout: "main", title: "text", username: myUser.fullName });
+
+           // הפניה לנתיב הראשי במקרה שהמשתמש הוא מנהל
+if (myUser.isAdmin) {
+  return res.redirect("/admin");
+} else {
+  // הפניה לדף "home" במקרה שהמשתמש אינו מנהל
+  return res.render("home", { layout: "main", title: "home", username: myUser.fullName });
+}
+
         }).catch((error) => {
             console.error("Error comparing passwords:", error);
             return res.status(500).json({ message: "Internal server error" });
@@ -152,18 +161,6 @@ module.exports = {
         return res.status(500).json({ message: "Internal server error" });
     });
 },
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 };

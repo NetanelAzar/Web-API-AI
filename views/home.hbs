@@ -1,57 +1,92 @@
 
 
+<h1>
+  <marquee behavior="scroll" scrolldelay="200" style="background-color: rgba(255, 255, 255, 0.202)" width="100%" direction="right" scrollamount="15">
+    <a style="color: white" target="_blank">
+      <div id="exchangeRate" style="display: inline-block; margin-right: 100px;"></div>
+      <div id="bitcoinRate" style="display: inline-block; margin-right: 20px;"></div>
+      <script>
+        // Fetch exchange rates
+        fetch('https://open.er-api.com/v6/latest/USD')
+          .then(response => response.json())
+          .then(data => {
+            const dollarRate = data.rates.ILS.toFixed(2);
+            document.getElementById('exchangeRate').innerHTML = `₪ שער הדולר הנוכחי:  ${dollarRate}`;
+          });
+
+        // Fetch Bitcoin rate
+        fetch('https://api.coindesk.com/v1/bpi/currentprice/BTC.json')
+          .then(response => response.json())
+          .then(data => {
+            const bitcoinRate = data.bpi.USD.rate;
+            document.getElementById('bitcoinRate').innerHTML = `$ מחיר הביטקוין הנוכחי: ${bitcoinRate}`;
+          });
+
+ 
+      </script>
+    </a>
+  </marquee>
+</h1>
+
+
+
+
+
+<section class="news">
+    <h2 style="color: white;">כתבות חדשות 14</h2>
+    {{#each articles}}
+        <div class="article">
+            <h2><a href="{{link}}">{{title}}</a></h2>
+        </div>
+    {{/each}}
+</section>
+
+
 
 
 <div id="homeAI">
-  <section id="home-card">
+
+
+
+
+
+ <section id="home-card">
     <p>ברוכים הבאים.</p>
     <p>לשימוש במערכת להרשמה או להתחברות.</p>
     <button onclick="window.location.href='/register'">הירשם כאן</button>
     <button onclick="window.location.href='/login'"> התחברות </button>
   </section>
+
+
+
+<section class="hero">
+  <h1>ברוכים הבאים ל- [שם האפליקציה שלך]</h1>
+  <p>[שם האפליקציה שלך] היא פלטפורמה מתקדמת שמציעה לך את הכלים ליצירת, לניהול ולשיתוף של תוכן מעולה, לצמצום כתובות URL, ולהישאר מעודכן עם החדשות האחרונות.</p>
+</section>
+
+<section class="features">
+  <h2>תכונות עיקריות</h2>
+  <ul class="features-cards">
+    <li class="cardAI">
+      <i class="fa fa-pencil"></i>
+      <h3>יצירת תוכן מדהים</h3>
+      <p>פרסמו מאמרים, פוסטים ברשתות החברתיות, סיפורים ועוד, בקלות וביעילות.</p>
+    </li>
+    <li class="cardAI">
+      <i class="fa fa-link"></i>
+      <h3>קיצור כתובות URL</h3>
+      <p>יצרו כתובות URL קצרות וקלות לשימוש לשיתוף ולקישורים ברשת.</p>
+    </li>
+    <li class="cardAI">
+      <i class="fa fa-newspaper"></i>
+      <h3>עדכונים וחדשות</h3>
+      <p>הישארו מעודכנים עם החדשות האחרונות והאירועים החשובים ביותר.</p>
+    </li>
+  </ul>
+</section>
+
+
+
+
 </div>
-
-
-
-
-    <section class="hero">
-      
-      <h1>הביאו את הרעיונות שלכם לחיים</h1>
-      <p>Gemini AI היא פלטפורמת בינה מלאכותית עוצמתית שמאפשרת לכם ליצור, ללמוד ולפתור בעיות בצורה חדשה.</p>
-      </section>
-    <section class="features">
-      <h2>תכונות עיקריות</h2>
-      <ul><ul class="features-cards">
-        <li class="cardAI">
-          <i class="fa fa-pencil"></i>
-          <h3>יצירת תוכן טקסטואלי</h3>
-          <p>כתוב מאמרים, פוסטים ברשתות חברתיות, סיפורים ועוד.</p>
-        </li>
-        <li class="cardAI">
-          <i class="fa fa-language"></i>
-          <h3>עיבוד שפה טבעית</h3>
-          <p>תרגם שפות, הבן טקסט ותקשר בצורה טבעית עם מכונות.</p>
-        </li>
-        <li class="cardAI">
-          <i class="fa fa-code"></i>
-          <h3>יצירת קוד</h3>
-          <p>כתוב תוכניות מחשב, אתרים ואפליקציות בקלות.</p>
-        </li>
-        <li class="cardAI">
-          <i class="fa fa-question-circle"></i>
-          <h3>שאלות ותשובות</h3>
-          <p>קבל תשובות לשאלותיך מכל תחום imaginable.</p>
-        </li>
-        <li class="cardAI">
-          <i class="fa fa-ellipsis-h"></i>
-          <h3>ועוד...</h3>
-          <p>Gemini AI נותנת לך גישה למגוון רחב של כלים מבוססי בינה מלאכותית.</p>
-        </li>
-      </ul>
-    
-    </section>
-
-
-
-
 

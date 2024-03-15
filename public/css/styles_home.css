@@ -143,4 +143,43 @@
 
 }
 
- 
+
+
+
+
+
+
+/* עיצוב קטע הכתבות */
+.news {
+  
+  max-width: 300px; /* רוחב מקסימלי */
+  float: right; /* יישור לימין */
+  margin-left: 20px; /* מרווח משמאל */
+  font-size: 14px; /* גודל הפונט */
+}
+
+/* עיצוב כל כתבה */
+.article {
+  margin-bottom: 20px; /* ריווח מתחת לכתבה */
+  background-color: #f9f9f9; /* צבע רקע לכתבה */
+  padding: 10px; /* ריווח בתוך הכתבה */
+  border-radius: 5px; /* פינות מעגלות */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* אפקט צל */
+}
+
+/* עיצוב הכותרת */
+.article h2 {
+  margin: 0; /* אפס מרווחים */
+  
+}
+
+/* עיצוב הקישור */
+.article a {
+  color: #333; /* צבע הקישור */
+  text-decoration: none; /* הסרת קו תחתון */
+}
+
+/* עיצוב הקישור בעת העברת העכבר מעליו */
+.article a:hover {
+  text-decoration: underline; /* הוספת קו תחתון בעת hover */
+}
