@@ -38,7 +38,7 @@ routes.get("/userAdmin", async (req, res) => {
   
   routes.get("/addAdmin", async (req, res) => {
     const users = await User.find().lean();
-    return res.status(200).render("add_admin", { layout: "index", title: "admin", users });
+    return res.status(200).render("addAdmin", { layout: "index", title: "admin", users });
   });
 
    

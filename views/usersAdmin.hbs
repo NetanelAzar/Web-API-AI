@@ -23,19 +23,21 @@
       <th>Name</th>
       <th>Email</th>
       <th>Phone</th>
+      <th>is Admin</th>
       <th>Option</th>
     </tr>
     <tr>
       <td>{{this.fullName}}</td>
       <td>{{this.email}}</td>
       <td>{{this.phone}}</td>
+      <td>{{this.isAdmin}}</td>
       <td><button onclick="deleteUser('{{this._id}}')">Delete</button></td>
     </tr>
   </table>
 {{/each}}
 
 
-<a href="/add_admin" class="btn">Add New User</a>
+<a href="/admin/addAdmin" class="btn">Add New User</a>
 
                 </div>
             </div>
