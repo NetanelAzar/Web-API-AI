@@ -145,6 +145,7 @@ module.exports = {
             req.session.user = token;
 
            // הפניה לנתיב הראשי במקרה שהמשתמש הוא מנהל
+           
 if (myUser.isAdmin) {
   return res.redirect("/admin");
 } else {

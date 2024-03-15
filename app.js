@@ -8,8 +8,7 @@ const MongoStore = require("connect-mongo"); // ייבוא המודול connect-
 const mysql = require("mysql"); // ייבוא המודול mysql
 const app = express(); // יצירת אפליקציה חדשה באמצעות express
 const hbs = require("express-handlebars"); // ייבוא המודול express-handlebars
-const axios = require('axios');
-const cheerio = require('cheerio');
+
 
 const twentyMin = 1000 * 60 * 20; // הגדרת זמן פג תוקף של ה-session
 
@@ -76,19 +75,6 @@ app.use(
     }),
   })
 );
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
