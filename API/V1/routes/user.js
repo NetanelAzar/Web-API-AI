@@ -10,11 +10,19 @@ const {
   login,
 } = require("../controllers/user");
 
+// מסלול קבלת כל המשתמשים
 routes.get("/", getAllUsers);
-routes.get("/:id", getUserById);
-routes.post("/", addUser);
-routes.patch("/:id", updateUser);
-routes.delete("/:id", deleteUser);
 
+// מסלול קבלת משתמש על פי זיהוי
+routes.get("/:id", getUserById);
+
+// מסלול הוספת משתמש חדש
+routes.post("/", addUser);
+
+// מסלול עדכון משתמש קיים
+routes.patch("/:id", updateUser);
+
+// מסלול מחיקת משתמש על פי זיהוי
+routes.delete("/:id", deleteUser);
 
 module.exports = routes;

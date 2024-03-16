@@ -1,160 +1,152 @@
-/* Basic CSS for styling */
+/* סגנון בסיסי עבור עיצוב */
 body {
-
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #333;
-  color: #fff;
+  font-family: Arial, sans-serif; /* גופן רגיל */
+  margin: 0; /* אין שום מרווחים בדף */
+  padding: 0; /* אין שום מרווחים בתוך התכנים */
+  background-color: #333; /* צבע רקע */
+  color: #fff; /* צבע טקסט */
 }
+
 header {
-  background-image: url("../uploads/pics/red.png");
-  background-color: #222;
-  color: #fff;
-  padding: 20px;
-  text-align: center;
-  background-size: cover; /* התמונה תוקפת את ה־header כולו */
-  background-position: center;
-  background-repeat: no-repeat;
+  background-image: url("../uploads/pics/red.png"); /* תמונת רקע */
+  background-color: #222; /* צבע רקע */
+  color: #fff; /* צבע טקסט */
+  padding: 20px; /* רווח מסביב לכותרת */
+  text-align: center; /* יישור טקסט למרכז */
+  background-size: cover; /* מתאים את התמונה למידות של ה header */
+  background-position: center; /* מרכז את התמונה ב header */
+  background-repeat: no-repeat; /* אין חזרות של התמונה */
 }
-
 
 nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #111;
-  color: #fff;
-  padding: 10px 0;
-  text-align: center;
+  display: flex; /* תצוגה כבר וכלי */
+  justify-content: space-between; /* מרווח שווה בין האלמנטים */
+  align-items: center; /* מירכוז אלמנטים אופקית */
+  background-color: #111; /* צבע רקע */
+  color: #fff; /* צבע טקסט */
+  padding: 10px 0; /* רווח בין תוכן הניווט לגבולות */
+  text-align: center; /* יישור טקסט למרכז */
 }
 
 nav a {
-  color: #fff;
-  text-decoration: none;
-  padding: 10px 20px;
-  margin: 0 10px;
-  border-radius: 5px;
-  transition: background-color 0.3s;
+  color: #fff; /* צבע טקסט */
+  text-decoration: none; /* אין קישורים מקווקצים */
+  padding: 10px 20px; /* רווחים בתוך כפתור הניווט */
+  margin: 0 10px; /* מרווח בין כפתורי הניווט */
+  border-radius: 5px; /* חריגים מעוגלים */
+  transition: background-color 0.3s; /* אנימציה של שינוי צבע רקע */
 }
 
 nav a:hover {
-  background-color: #444;
+  background-color: #444; /* צבע רקע בעת העברת העכבר */
 }
-
-
 
 .container {
-  max-width: 400px; /*
-        Adjusted maximum width */
-  margin: 0 auto;
-  padding: 0 20px;
+  max-width: 400px; /* הרוחב המרבי של התוכן */
+  margin: 0 auto; /* מרכז את התוכן באופן אוטומטי */
+  padding: 0 20px; /* רווח בין גבולות התוכן לתוכנו */
 }
+
 .card {
-  background-color: #222;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  padding: 20px;
-  margin-top: 20px;
+  background-color: #222; /* צבע רקע */
+  border-radius: 5px; /* חריגים מעוגלים */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* הצללה */
+  padding: 20px; /* רווח בתוך הכרטיס */
+  margin-top: 20px; /* מרווח בין כרטיסים */
 }
+
 .card h2 {
-  color: #007bff;
-  margin-top: 0;
+  color: #007bff; /* צבע טקסט של כותרת */
+  margin-top: 0; /* אין מרווח בראש הכותרת */
 }
+
 .card p {
-  color: #ddd;
-  margin: 10px 0;
+  color: #ddd; /* צבע טקסט */
+  margin: 10px 0; /* רווח בין פסקה לפסקה */
 }
+
 .card-img {
-  width: 100%;
-  height: 50%;
-  border-radius: 5px;
-  margin-bottom: 10px;
+  width: 100%; /* התאמה לרוחב מקסימלי */
+  height: 50%; /* גובה חצי */
+  border-radius: 5px; /* חריגים מעוגלים */
+  margin-bottom: 10px; /* מרווח מתחת לתמונה */
 }
+
 .card-button {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  text-decoration: none;
-  display: block;
-  width: 100%;
-  margin-top: 10px;
+  background-color: #007bff; /* צבע רקע */
+  color: #fff; /* צבע טקסט */
+  border: none; /* אין גבול */
+  padding: 10px 20px; /* רווח בתוך הכפתור */
+  border-radius: 5px; /* חריגים מעוגלים */
+  cursor: pointer; /* סמל העכבר משתנה לידת כפתור */
+  text-decoration: none; /* אין קישורים מקווקצים */
+  display: block; /* הכפתור נמצא בסידור בלוק */
+  width: 100%; /* התאמה לרוחב המקסימלי */
+  margin-top: 10px; /* מרווח מלמעלה */
 }
+
 .card-button:hover {
-  background-color: #0056b3;
+  background-color: #0056b3; /* צבע רקע בעת העברת העכבר */
 }
+
 footer {
-  background-color: #111;
-  color: #ddd;
-  padding: 20px;
-  text-align: center;
-  margin-top: 50px;
-} /* Responsive
-        CSS */
+  background-color: #111; /* צבע רקע */
+  color: #ddd; /* צבע טקסט */
+  padding: 20px; /* רווח בתוך הכותרת */
+  text-align: center; /* יישור טקסט למרכז */
+  margin-top: 50px; /* מרווח מלמעלה */
+}
+
+/* סגנון תגובתי */
 @media only screen and (max-width: 600px) {
   header {
-    padding: 10px;
+    padding: 10px; /* רווח קטן בכותרת */
   }
   nav {
-    padding: 5px 0;
+    padding: 5px 0; /* רווח קטן בניווט */
   }
   nav a {
-    padding: 5px 10px;
-    margin: 0 5px;
+    padding: 5px 10px; /* רווח קטן בכפתורי הניווט */
+    margin: 0 5px; /* מרווח בין כפתורי הניווט */
   }
   .container {
-    padding: 0 10px;
+    padding: 0 10px; /* רווח קטן בגבולות התוכן */
   }
   .card {
-    padding: 15px;
-    margin-top: 10px;
+    padding: 15px; /* רווח קטן בתוך הכרטיס */
+    margin-top: 10px; /* מרווח קטן בין כרטיסים */
   }
   .card-input {
-    display: flex;
-    align-items: center;
+    display: flex; /* תצוגה כבר וכלי */
+    align-items: center; /* מירכוז אלמנטים אופקית */
   }
 
   .card-input input {
-    flex-grow: 1;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin-right: 10px;
+    flex-grow: 1; /* התאמה אוטומטית לרוחב */
+    padding: 10px; /* רווח בתוך הקלט */
+    border: 1px solid #ddd; /* קו תחתון */
+    border-radius: 5px; /* חריגים מעוגלים */
+    margin-right: 10px; /* מרווח מימין */
   }
 
   .card-input button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    text-decoration: none;
+    background-color: #007bff; /* צבע רקע */
+    color: #fff; /* צבע טקסט */
+    border: none; /* אין גבול */
+    padding: 10px 20px; /* רווח בתוך הכפתור */
+    border-radius: 5px; /* חריגים מעוגלים */
+    cursor: pointer; /* סמל העכבר משתנה לידת כפתור */
+    text-decoration: none; /* אין קישורים מקווקצים */
   }
 
   .card-input button:hover {
-    background-color: #0056b3;
+    background-color: #0056b3; /* צבע רקע בעת העברת העכבר */
   }
 
   footer {
-    padding: 10px;
+    padding: 10px; /* רווח קטן בתוך הכותרת */
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -176,21 +168,5 @@ footer {
   text-align: center;
   line-height: 1.5;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

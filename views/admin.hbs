@@ -1,133 +1,93 @@
-
-
-
-
-
-
-
-
-
-
-        <div class="content">
-            <div class="cards">
-                <div class="card">
-                    <div class="box">
-                        
-                        <h1>{{users.length}}</h1>
-                            <h3>Users</h3>
-                            
-                    </div>
-                    <div class="icon-case">
-                        <img src="students.png" alt="">
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="box">
-                        
-                        <h1>{{text.length}}</h1>
-                        <h3>Gemini creation</h3>
-                         
-                         
-                    </div>
-                    <div class="icon-case">
-                        <img src="teachers.png" alt="">
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="box">
-                        <h1>{{url.length}}</h1>
-                        <h3>URL</h3>
-                    </div>
-                    <div class="icon-case">
-                        <img src="schools.png" alt="">
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="box">
-                       <h1>0</h1>
-                         <h3>משתמשים מחוברים</h3>
-                    </div>
-                    <div class="icon-case">
-                        <img src="income.png" alt="">
-                    </div>
-                </div>
+<div class="content">
+    <div class="cards">
+        <div class="card">
+            <div class="box">
+                <h1>{{users.length}}</h1> <!-- מספר המשתמשים -->
+                <h3>Users</h3> <!-- כותרת "משתמשים" -->
             </div>
-
-
-
-            
-            <div class="content-2">
-                <div class="recent-payments">
-                    <div class="title">
-                        <h2>Users</h2>
-                        <a href="/admin/userAdmin" class="btn">View All</a>
-                    </div>
-
-
-
-                 {{#each users}}
- 
-                    <table>
-
-                    
-                        <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>phone</th>
-                            <th>isAdmin</th>
-                            <th>Option</th>
-                        </tr>
-                        <tr>
-                            <td>{{this.fullName}}</td>
-                            <td>{{this.email}}</td>
-                            <td>{{this.phone}}</td>
-                            <td>{{this.isAdmin}}</td>
-                            <td><a href="#" class="btn">View</a></td>
-                        </tr>
-                        </table>
-{{/each}}
-
-
-
-
-
-                </div>
-
-                 <div class="recent-payments">
-                    <div class="title">
-                        <h2>Administrators</h2>
-                        <a href="#" class="btn">View All</a>
-                    </div>
-            
-                  <table>
-                    
-                        <tr>
-                            <th>Profile</th>
-                            <th>Name</th>
-                            <th>Title</th>
-                        </tr>
-                    
-                        <tr>
-                            <td><img src="#" alt=""></td>
-                            <td>Neanel Azar</td>
-                            <td>Website developer</td>
-                        </tr>
-                        <tr>
-                            <td><img src="user.png" alt=""></td>
-                            <td>John Steve Doe</td>
-                            <td><img src="info.png" alt=""></td>
-                        </tr>
-                   
-                    </table></div>
-                
-
-
-
-
+            <div class="icon-case">
+                <img src="students.png" alt=""> <!-- תמונת סמל משתמשים -->
             </div>
-            
         </div>
-        
+        <div class="card">
+            <div class="box">
+                <h1>{{text.length}}</h1> <!-- מספר הטקסטים -->
+                <h3>Gemini creation</h3> <!-- כותרת "יצירת ג'מיני" -->
+            </div>
+            <div class="icon-case">
+                <img src="teachers.png" alt=""> <!-- תמונת סמל יצירת ג'מיני -->
+            </div>
+        </div>
+        <div class="card">
+            <div class="box">
+                <h1>{{url.length}}</h1> <!-- מספר ה-URL -->
+                <h3>URL</h3> <!-- כותרת "URL" -->
+            </div>
+            <div class="icon-case">
+                <img src="schools.png" alt=""> <!-- תמונת סמל URL -->
+            </div>
+        </div>
+        <div class="card">
+            <div class="box">
+                <h1>0</h1> <!-- מספר המשתמשים המחוברים -->
+                <h3>משתמשים מחוברים</h3> <!-- כותרת "משתמשים מחוברים" -->
+            </div>
+            <div class="icon-case">
+                <img src="income.png" alt=""> <!-- תמונת סמל המשתמשים המחוברים -->
+            </div>
+        </div>
     </div>
 
-    
+    <div class="content-2">
+        <div class="recent-payments">
+            <div class="title">
+                <h2>Users</h2> <!-- כותרת "משתמשים" -->
+                <a href="/admin/userAdmin" class="btn">View All</a> <!-- קישור לצפייה בכל המשתמשים -->
+            </div>
+
+            {{#each users}} <!-- הצגת כל המשתמשים בטבלה -->
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>phone</th>
+                    <th>isAdmin</th>
+                    <th>Option</th>
+                </tr>
+                <tr>
+                    <td>{{this.fullName}}</td>
+                    <td>{{this.email}}</td>
+                    <td>{{this.phone}}</td>
+                    <td>{{this.isAdmin}}</td>
+                    <td><a href="#" class="btn">View</a></td>
+                </tr>
+            </table>
+            {{/each}}
+
+        </div>
+
+        <div class="recent-payments">
+            <div class="title">
+                <h2>Administrators</h2> <!-- כותרת "מנהלים" -->
+                <a href="#" class="btn">View All</a> <!-- קישור לצפייה בכל המנהלים -->
+            </div>
+            <table>
+                <tr>
+                    <th>Profile</th>
+                    <th>Name</th>
+                    <th>Title</th>
+                </tr>
+                <tr>
+                    <td><img src="#" alt=""></td>
+                    <td>Neanel Azar</td>
+                    <td>Website developer</td>
+                </tr>
+                <tr>
+                    <td><img src="user.png" alt=""></td>
+                    <td>John Steve Doe</td>
+                    <td><img src="info.png" alt=""></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

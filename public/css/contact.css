@@ -1,54 +1,62 @@
 #contact-container {
-    width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
+    /* תיבת הצורך הראשית */
+    width: 400px; /* רוחב התיבה */
+    margin: 0 auto; /* מרכוז התיבה באמצע */
+    padding: 20px; /* ריווח פנימי */
+    border: 1px solid #ccc; /* מסגרת עם צבע רקע */
+    border-radius: 5px; /* פינות מעוגלות */
+    background-color: #f9f9f9; /* צבע רקע */
 }
 
 #contact-title {
-    margin-top: 0;
-    color: #333;
-    text-align: center;
+    /* כותרת הצורך */
+    margin-top: 0; /* מרווח מעל לכותרת */
+    color: #333; /* צבע הטקסט */
+    text-align: center; /* מרכוז הטקסט באמצע */
 }
 
 .form-group {
-    margin-bottom: 20px;
+    /* קבוצת הפורמלר */
+    margin-bottom: 20px; /* ריווח מתחת לקבוצה */
 }
 
 label {
-    display: block;
-    margin-bottom: 5px;
-    color: #555;
+    /* תווית */
+    display: block; /* תווית כברירת מחדל היא בלוק */
+    margin-bottom: 5px; /* ריווח מתחת לתווית */
+    color: #555; /* צבע התווית */
 }
 
 input[type="text"],
 input[type="email"],
 textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    box-sizing: border-box;
+    /* שדות טקסט */
+    width: 100%; /* רוחב מלא */
+    padding: 10px; /* ריווח פנימי */
+    border: 1px solid #ccc; /* מסגרת */
+    border-radius: 3px; /* פינות מעוגלות */
+    box-sizing: border-box; /* התאמה של הגודל לתיבת הטקסט */
 }
 
 textarea {
-    height: 100px;
+    /* שדה טקסט מרוחק */
+    height: 100px; /* גובה קבוע */
 }
 
 button[type="submit"] {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #007bff; /* Border added */
-    border-radius: 3px;
-    background-color: #007bff;
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    /* כפתור שליחה */
+    display: block; /* תצוגה כברירת מחדל בלוק */
+    width: 100%; /* רוחב מלא */
+    padding: 10px; /* ריווח פנימי */
+    border: 1px solid #007bff; /* מסגרת */
+    border-radius: 3px; /* פינות מעוגלות */
+    background-color: #007bff; /* צבע רקע */
+    color: #fff; /* צבע טקסט */
+    cursor: pointer; /* סמן עכבר ככפתור */
+    transition: background-color 0.3s ease; /* אנימציה בעת הרחבת צבע הרקע */
 }
 
 button[type="submit"]:hover {
-    background-color: #0056b3;
+    /* כאשר העכבר עובר מעל הכפתור */
+    background-color: #0056b3; /* שינוי בצבע הרקע */
 }

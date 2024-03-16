@@ -1,31 +1,31 @@
 <div class="content">
-    <h2 id="reg">הרשמה</h2>
+    <h2 id="reg">הרשמה</h2> <!-- כותרת ההרשמה -->
     <form action="/register" method="post" enctype="multipart/form-data">
         <div>
-            <label for="fullName">שם מלא:</label>
+            <label for="fullName">שם מלא:</label> <!-- שדה הטקסט של שם מלא -->
             <input type="text" id="fullName" name="fullName" required />
         </div>
         <div>
-            <label for="email">דוא"ל:</label>
+            <label for="email">דוא"ל:</label> <!-- שדה הטקסט של דוא"ל -->
             <input type="email" id="email" name="email" required />
         </div>
         <div>
-            <label for="password">סיסמה:</label>
+            <label for="password">סיסמה:</label> <!-- שדה הסיסמה -->
             <input type="password" id="password" name="password" required />
         </div>
         <div>
-            <label for="phone">טלפון:</label>
+            <label for="phone">טלפון:</label> <!-- שדה הטלפון -->
             <input type="tel" id="phone" name="phone" required />
-            <small>הכנס מספר טלפון בפורמט: XXX-XXXXXXX</small>
+            <small>הכנס מספר טלפון בפורמט: XXX-XXXXXXX</small> <!-- הסבר על פורמט הטלפון -->
         </div>
         <div>
-            <label for="picture">תמונה:</label>
+            <label for="picture">תמונה:</label> <!-- שדה להעלאת תמונה -->
             <input type="file" id="picture" name="picture">
         </div>
         <div>
-            <label for="isAdmin">האם אתה מנהל?</label>
+            <label for="isAdmin">האם אתה מנהל?</label> <!-- שדה לסימון האם המשתמש הוא מנהל -->
             <input type="checkbox" id="isAdmin" name="isAdmin" value="true">
         </div>
-        <button type="submit" id="regButton">הרשם</button>
+        <button type="submit" id="regButton">הרשם</button> <!-- כפתור לשליחת הטופס -->
     </form>
 </div>

@@ -1,234 +1,269 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    margin: 0; /* איפוס שוליים */
+    padding: 0; /* איפוס רווחים */
+    box-sizing: border-box; /* קביעת תיבת המידה לפי המרכז של הגבול */
+    font-family: 'Poppins', sans-serif; /* קביעת הגופן */
 }
+
 body {
-    min-height: 100vh;
+    min-height: 100vh; /* הגבול לגובה של הדף */
 }
+
 a {
-    text-decoration: none;
+    text-decoration: none; /* הסרת קווים מתחת לקישורים */
 }
+
 li {
-    list-style: none;
+    list-style: none; /* הסרת נקודות מורידות */
 }
+
 h1,
 h2 {
-    color: #444;
+    color: #444; /* צבע הכותרות */
 }
+
 h3 {
-    color: #999;
+    color: #999; /* צבע הכותרות */
 }
+
 .btn {
-    background: #f05462;
-    color: white;
-    padding: 5px 10px;
-    text-align: center;
+    background: #f05462; /* רקע כפתור */
+    color: white; /* צבע טקסט בכפתור */
+    padding: 5px 10px; /* ריווחים בתוך הכפתור */
+    text-align: center; /* מרכוז הטקסט בכפתור */
 }
+
 .btn:hover {
-    color: #f05462;
-    background: white;
-    padding: 3px 8px;
-    border: 2px solid #f05462;
+    color: #f05462; /* צבע הטקסט בעכבר מעל הכפתור */
+    background: white; /* רקע הכפתור בעכבר מעל הכפתור */
+    padding: 3px 8px; /* ריווחים בתוך הכפתור */
+    border: 2px solid #f05462; /* גבולות בעכבר מעל הכפתור */
 }
+
 .title {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    padding: 15px 10px;
-    border-bottom: 2px solid #999;
+    display: flex; /* תצוגה כתיב גמישה */
+    align-items: center; /* יישור אופקי של הפריטים במרכז */
+    justify-content: space-around; /* יישור אנכי של הפריטים */
+    padding: 15px 10px; /* ריווחים בתוך האלמנט */
+    border-bottom: 2px solid #999; /* קו תחתון */
 }
+
 table {
-    padding: 10px;
+    padding: 10px; /* ריווחים בתוך הטבלה */
 }
+
 th,
 td {
-    text-align: left;
-    padding: 8px;
+    text-align: left; /* יישור טקסט לשמאל בתוך התאים */
+    padding: 8px; /* ריווחים בתוך התאים */
 }
+
 .side-menu {
-    position: fixed;
-    background: #f05462;
-    width: 20vw;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+    position: fixed; /* קביעת המיקום לקבוע */
+    background: #f05462; /* צבע רקע של התפריט הצדדי */
+    width: 20vw; /* רוחב התפריט הצדדי */
+    min-height: 100vh; /* גובה מינימלי של התפריט הצדדי */
+    display: flex; /* תצוגה כתיב גמישה */
+    flex-direction: column; /* כיוון ההצגה */
 }
+
 .side-menu .brand-name {
-    height: 10vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    height: 10vh; /* גובה של מרכיב */
+    display: flex; /* תצוגה כתיב גמישה */
+    align-items: center; /* יישור אופקי של הפריטים במרכז */
+    justify-content: center; /* יישור אנכי של הפריטים */
 }
+
 .side-menu li {
-    font-size: 24px;
-    padding: 10px 40px;
-    color: white;
-    display: flex;
-    align-items: center;
+    font-size: 24px; /* גודל הגופן */
+    padding: 10px 40px; /* ריווחים מסביב לתוכן */
+    color: white; /* צבע הטקסט */
+    display: flex; /* תצוגה כתיב גמישה */
+    align-items: center; /* יישור אופקי של הפריטים במרכז */
 }
+
 .side-menu li:hover {
-    background: white;
-    color: #f05462;
+    background: #f05462; /* צבע רקע בעבר העכבר */
+    color: #f05462; /* צבע הטקסט בעבר העכבר */
 }
+
 .container {
-    position: absolute;
-    right: 0;
-    width: 80vw;
-    height: 100vh;
-    background: #f1f1f1;
+    position: absolute; /* קביעת המיקום לקבוע */
+    right: 0; /* הצמדת האלמנט לימין */
+    width: 80vw; /* רוחב האלמנט */
+    height: 100vh; /* גובה האלמנט */
+    background: #f1f1f1; /* צבע רקע */
 }
+
 .container .header {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 80vw;
-    height: 10vh;
-    background: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    z-index: 1;
+    position: fixed; /* קביעת המיקום לקבוע */
+    top: 0; /* הצמדת האלמנט לראש */
+    right: 0; /* הצמדת האלמנט לימין */
+    width: 80vw; /* רוחב האלמנט */
+    height: 10vh; /* גובה האלמנט */
+    background: white; /* צבע רקע */
+    display: flex; /* תצוגה כתיב גמישה */
+    align-items: center; /* יישור אנכי של הפריטים במרכז */
+    justify-content: center; /* יישור אנכי של הפריטים */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* הוספת צל לאלמנט */
+    z-index: 1; /* קביעת רמת שקיפות */
 }
+
 .container .header .nav {
-    width: 90%;
-    display: flex;
-    align-items: center;
+    width: 90%; /* רוחב האלמנט */
+    display: flex; /* תצוגה כתיב גמישה */
+    align-items: center; /* יישור אנכי של הפריטים במרכז */
 }
+
 .container .header .nav .search {
-    flex: 3;
-    display: flex;
-    justify-content: center;
+    flex: 3; /* קיבוע אורך האלמנט */
+    display: flex; /* תצוגה כתיב גמישה */
+    justify-content: center; /* יישור אנכי של הפריטים */
 }
+
 .container .header .nav .search input[type=text] {
-    border: none;
-    background: #f1f1f1;
-    padding: 10px;
-    width: 50%;
+    border: none; /* הסרת גבולות */
+    background: #f1f1f1; /* צבע רקע */
+    padding: 10px; /* ריווחים בתוך התיבה */
+    width: 50%; /* רוחב התיבה */
 }
+
 .container .header .nav .search button {
-    width: 40px;
-    height: 40px;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 40px; /* רוחב הכפתור */
+    height: 40px; /* גובה הכפתור */
+    border: none; /* הסרת גבולות */
+    display: flex; /* תצוגה כתיב גמישה */
+    align-items: center; /* יישור אופקי של הפריטים במרכז */
+    justify-content: center; /* יישור אנכי של הפריטים */
 }
+
 .container .header .nav .search button img {
-    width: 30px;
-    height: 30px;
+    width: 30px; /* רוחב התמונה */
+    height: 30px; /* גובה התמונה */
 }
+
 .container .header .nav .user {
-    flex: 1;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex: 1; /* קיבוע אורך האלמנט */
+    display: flex; /* תצוגה כתיב גמישה */
+    justify-content: space-between; /* הפרדה שווה בין הפריטים */
+    align-items: center; /* יישור אנכי של הפריטים במרכז */
 }
+
 .container .header .nav .user img {
-    width: 40px;
-    height: 40px;
+    width: 40px; /* רוחב התמונה */
+    height: 40px; /* גובה התמונה */
 }
+
 .container .header .nav .user .img-case {
-    position: relative;
-    width: 50px;
-    height: 50px;
+    position: relative; /* קביעת המיקום ליחסי */
+    width: 50px; /* רוחב התמונה */
+    height: 50px; /* גובה התמונה */
 }
+
 .container .header .nav .user .img-case img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    position: absolute; /* קביעת המיקום לקבוע */
+    top: 0; /* הצמדת האלמנט לראש */
+    left: 0; /* הצמדת האלמנט לשמאל */
+    width: 100%; /* רוחב התמונה */
+    height: 100%; /* גובה התמונה */
 }
+
 .container .content {
-    position: relative;
-    margin-top: 10vh;
-    min-height: 90vh;
-    background: #f1f1f1;
+    position: relative; /* קביעת המיקום ליחסי */
+    margin-top: 10vh; /* הזזת האלמנט למעלה */
+    min-height: 90vh; /* גובה מינימלי של התוכן */
+    background: #f1f1f1; /* צבע רקע */
 }
+
 .container .content .cards {
-    padding: 20px 15px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    padding: 20px 15px; /* ריווחים בתוך הכרטיס */
+    display: flex; /* תצוגה כתיב גמישה */
+    align-items: center; /* יישור אופקי של הפריטים במרכז */
+    justify-content: space-between; /* הפרדה שווה בין הפריטים */
+    flex-wrap: wrap; /* פריסת הפריטים כשרשרת */
 }
+
 .container .content .cards .card {
-    width: 250px;
-    height: 150px;
-    background: white;
-    margin: 20px 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 250px; /* רוחב הכרטיס */
+    height: 150px; /* גובה הכרטיס */
+    background: white; /* צבע רקע */
+    margin: 20px 10px; /* ריווחים מסביב לכרטיס */
+    display: flex; /* תצוגה כתיב גמישה */
+    align-items: center; /* יישור אופקי של הפריטים במרכז */
+    justify-content: space-around; /* הפרדה שווה בין הפריטים */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); /* הוספת צל לכרטיס */
 }
+
 .container .content .content-2 {
-    min-height: 60vh;
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-start;
-    flex-wrap: wrap;
+    min-height: 60vh; /* גובה מינימלי של התוכן */
+    display: flex; /* תצוגה כתיב גמישה */
+    justify-content: space-around; /* הפרדה שווה בין הפריטים */
+    align-items: flex-start; /* יישור אנכי של הפריטים במרכז */
+    flex-wrap: wrap; /* פריסת הפריטים כשרשרת */
 }
+
 .container .content .content-2 .recent-payments {
-    min-height: 50vh;
-    flex: 5;
-    background: white;
-    margin: 0 25px 25px 25px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    display: flex;
-    flex-direction: column;
+    min-height: 50vh; /* גובה מינימלי של התוכן */
+    flex: 5; /* קיבוע אורך האלמנט */
+    background: white; /* צבע רקע */
+    margin: 0 25px 25px 25px; /* ריווחים מסביב לתוכן */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); /* הוספת צל לתוכן */
+    display: flex; /* תצוגה כתיב גמישה */
+    flex-direction: column; /* כיוון ההצגה */
 }
+
 .container .content .content-2 .new-students {
-    flex: 2;
-    background: white;
-    min-height: 50vh;
-    margin: 0 25px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    display: flex;
-    flex-direction: column;
+    flex: 2; /* קיבוע אורך האלמנט */
+    background: white; /* צבע רקע */
+    min-height: 50vh; /* גובה מינימלי של התוכן */
+    margin: 0 25px; /* ריווחים מסביב לתוכן */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); /* הוספת צל לתוכן */
+    display: flex; /* תצוגה כתיב גמישה */
+    flex-direction: column; /* כיוון ההצגה */
 }
+
 .container .content .content-2 .new-students table td:nth-child(1) img {
-    height: 40px;
-    width: 40px;
+    height: 40px; /* גובה התמונה */
+    width: 40px; /* רוחב התמונה */
 }
+
 @media screen and (max-width: 1050px) {
     .side-menu li {
-        font-size: 18px;
+        font-size: 18px; /* גודל הגופן */
     }
 }
+
 @media screen and (max-width: 940px) {
     .side-menu li span {
-        display: none;
+        display: none; /* הסתרת הטקסט */
     }
     .side-menu {
-        align-items: center;
+        align-items: center; /* יישור אנכי של הפריטים במרכז */
     }
     .side-menu li img {
-        width: 40px;
-        height: 40px;
+        width: 40px; /* רוחב התמונה */
+        height: 40px; /* גובה התמונה */
     }
     .side-menu li:hover {
-        background: #f05462;
-        padding: 8px 38px;
-        border: 2px solid white;
+        background: #f05462; /* צבע רקע בעבר העכבר */
+        padding: 8px 38px; /* ריווחים מסביב לתוכן */
+        border: 2px solid white; /* הוספת גבול */
     }
 }
-@media screen and (max-width:536px) {
+
+@media screen and (max-width: 536px) {
     .brand-name h1 {
-        font-size: 16px;
+        font-size: 16px; /* גודל הטקסט */
     }
     .container .content .cards {
-        justify-content: center;
+        justify-content: center; /* יישור אנכי של הפריטים במרכז */
     }
     .side-menu li img {
-        width: 30px;
-        height: 30px;
+        width: 30px; /* רוחב התמונה */
+        height: 30px; /* גובה התמונה */
     }
     .container .content .content-2 .recent-payments table th:nth-child(2),
     .container .content .content-2 .recent-payments table td:nth-child(2) {
-        display: none;
+        display: none; /* הסתרת התאים */
     }
 }

@@ -1,40 +1,31 @@
-<h1>My AI</h1>
+<h1>My AI</h1> <!-- כותרת "ה AI שלי" -->
 <div class="container">
   {{#each text}}
     <section class="card">
       <div class="card-header">
-        <h2>You : {{this.prompt}}</h2>
+        <h2>You : {{this.prompt}}</h2> <!-- הודעה מהמשתמש -->
       </div>
       <div class="card-body">
-        <p class="answer"><h2>Answer :</h2> {{this.answer}}</p>
+        <p class="answer"><h2>Answer :</h2> {{this.answer}}</p> <!-- תשובת ה-AI -->
       </div>
     </section>
   {{/each}}
 </div>
 
-
-
 <div class="cardContainer">
   <div class="cardAnswer" id="innerText">
-   
+    <!-- מיקום של התשובה הנוכחית -->
   </div>
 </div>
-
-  
-
-
 
 <div class="container">
   <div class="card-input">
-    
     <input
       type="text"
       id="userGenerate"
-      placeholder="Enter your message to Gemini"/>
-    <button type="button" class="card-button" id="btnGenerateText">Send</button>
-   
+      placeholder="Enter your message to Gemini"/> <!-- שדה קלט להודעת המשתמש -->
+    <button type="button" class="card-button" id="btnGenerateText">Send</button> <!-- כפתור לשליחת ההודעה -->
   </div>
 </div>
 
-
-<script src="js/text.js"> </script>
+<script src="js/text.js"> </script> <!-- קישור לקובץ ה-JavaScript המתקשר עם ה-AI -->

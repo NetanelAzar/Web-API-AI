@@ -1,66 +1,46 @@
-
-
 <h1>
   <marquee behavior="scroll" scrolldelay="200" style="background-color: rgba(255, 255, 255, 0.202)" width="100%" direction="right" scrollamount="15">
     <a style="color: white" target="_blank">
-      <div id="exchangeRate" style="display: inline-block; margin-right: 100px;"></div>
-      <div id="bitcoinRate" style="display: inline-block; margin-right: 20px;"></div>
-      <script src="js/marquee.js" > </script>
+      <div id="exchangeRate" style="display: inline-block; margin-right: 100px;"></div> <!-- מחירי החליפין -->
+      <div id="bitcoinRate" style="display: inline-block; margin-right: 20px;"></div> <!-- מחירי הביטקוין -->
+      <script src="js/marquee.js" > </script> <!-- קובץ התסריט המניע את התנועה -->
     </a>
   </marquee>
 </h1>
 
-
-
-
-
 <section class="news">
-    <h2 style="color: white;">כתבות חדשות 14</h2>
-    {{#each articles}}
+    <h2 style="color: white;">כתבות חדשות 14</h2> <!-- כותרת "כתבות חדשות" -->
+    {{#each articles}} <!-- הצגת כל הכתבות -->
         <div class="article">
-            <h2><a href="{{link}}">{{title}}</a></h2>
+            <h2><a href="{{link}}">{{title}}</a></h2> <!-- כותרת הכתבה כקישור -->
         </div>
     {{/each}}
 </section>
 
-
-
-
 <div id="homeAI">
+    <section class="hero">
+        <h1>AZAR - ברוכים הבאים ל  </h1> <!-- כותרת הגישה הראשית -->
+        <p>  URL היא פלטפורמה מתקדמת שמציעה לך את הכלים ליצירת, לניהול ולשיתוף של תוכן מעולה, לצמצום כתובות AZAR , ולהישאר מעודכן עם החדשות האחרונות.</p> <!-- תיאור הגישה -->
+    </section>
 
-
-
-
-
-
-<section class="hero">
-  <h1>AZAR - ברוכים הבאים ל  </h1>
-  <p>  URL היא פלטפורמה מתקדמת שמציעה לך את הכלים ליצירת, לניהול ולשיתוף של תוכן מעולה, לצמצום כתובות AZAR , ולהישאר מעודכן עם החדשות האחרונות.</p>
-</section>
-
-<section class="features">
-  <h2>תכונות עיקריות</h2>
-  <ul class="features-cards">
-    <li class="cardAI">
-      <i class="fa fa-pencil"></i>
-      <h3>יצירת תוכן מדהים</h3>
-      <p>פרסמו מאמרים, פוסטים ברשתות החברתיות, סיפורים ועוד, בקלות וביעילות.</p>
-    </li>
-    <li class="cardAI">
-      <i class="fa fa-link"></i>
-      <h3>קיצור כתובות URL</h3>
-      <p>יצרו כתובות URL קצרות וקלות לשימוש לשיתוף ולקישורים ברשת.</p>
-    </li>
-    <li class="cardAI">
-      <i class="fa fa-newspaper"></i>
-      <h3>עדכונים וחדשות</h3>
-      <p>הישארו מעודכנים עם החדשות האחרונות והאירועים החשובים ביותר.</p>
-    </li>
-  </ul>
-</section>
-
-
-
-
+    <section class="features">
+        <h2>תכונות עיקריות</h2> <!-- כותרת "תכונות עיקריות" -->
+        <ul class="features-cards">
+            <li class="cardAI">
+                <i class="fa fa-pencil"></i>
+                <h3>יצירת תוכן מדהים</h3> <!-- תכונת יצירת תוכן -->
+                <p>פרסמו מאמרים, פוסטים ברשתות החברתיות, סיפורים ועוד, בקלות וביעילות.</p> <!-- הסבר על יכולות יצירת התוכן -->
+            </li>
+            <li class="cardAI">
+                <i class="fa fa-link"></i>
+                <h3>קיצור כתובות URL</h3> <!-- תכונת קיצור כתובות URL -->
+                <p>יצרו כתובות URL קצרות וקלות לשימוש לשיתוף ולקישורים ברשת.</p> <!-- הסבר על יכולות הקיצור -->
+            </li>
+            <li class="cardAI">
+                <i class="fa fa-newspaper"></i>
+                <h3>עדכונים וחדשות</h3> <!-- תכונת עדכונים וחדשות -->
+                <p>הישארו מעודכנים עם החדשות האחרונות והאירועים החשובים ביותר.</p> <!-- הסבר על העדכונים והחדשות -->
+            </li>
+        </ul>
+    </section>
 </div>
-

@@ -1,46 +1,41 @@
+<div class="content">
+    <!-- תחילת תיבת תוכן ראשית -->
 
-            <div class="content">
-          
-               
-                 
+    <div class="content-2">
+        <!-- תיבת תוכן משנית -->
 
+        <div class="recent-payments">
+            <!-- תיבת התשלומים האחרונים -->
 
-
-
-
-
-
-            <div class="content-2">
-                <div class="recent-payments">
-                    <div class="title">
-                        <h2>Users</h2>
-                    </div>
-
-
-{{#each users}}
-  <table>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Phone</th>
-      <th>is Admin</th>
-      <th>Option</th>
-    </tr>
-    <tr>
-      <td>{{this.fullName}}</td>
-      <td>{{this.email}}</td>
-      <td>{{this.phone}}</td>
-      <td>{{this.isAdmin}}</td>
-      <td><button onclick="deleteUser('{{this._id}}')">Delete</button></td>
-    </tr>
-  </table>
-{{/each}}
-
-
-<a href="/admin/addAdmin" class="btn">Add New User/Admin</a>
-
-                </div>
+            <div class="title">
+                <h2>Users</h2> <!-- כותרת הקטגוריה "משתמשים" -->
             </div>
-                 
-            </div>
-            
+
+            {{#each users}}
+            <!-- לולאה שמרכזת את המשתמשים -->
+
+            <table>
+                <!-- טבלת משתמשים -->
+                <tr>
+                    <th>Name</th> <!-- כותרת העמודה "שם" -->
+                    <th>Email</th> <!-- כותרת העמודה "דוא"ל" -->
+                    <th>Phone</th> <!-- כותרת העמודה "טלפון" -->
+                    <th>is Admin</th> <!-- כותרת העמודה "האם מנהל" -->
+                    <th>Option</th> <!-- כותרת העמודה "אפשרויות" -->
+                </tr>
+                <tr>
+                    <td>{{this.fullName}}</td> <!-- שם המשתמש -->
+                    <td>{{this.email}}</td> <!-- כתובת הדוא"ל של המשתמש -->
+                    <td>{{this.phone}}</td> <!-- מספר הטלפון של המשתמש -->
+                    <td>{{this.isAdmin}}</td> <!-- האם המשתמש הוא מנהל -->
+                    <td><button onclick="deleteUser('{{this._id}}')">Delete</button></td> <!-- כפתור מחיקת המשתמש -->
+                </tr>
+            </table>
+            {{/each}}
+
+            <a href="/admin/addAdmin" class="btn">Add New User/Admin</a> <!-- קישור להוספת משתמש/מנהל חדש -->
+
+        </div>
+    </div>
+
+</div>

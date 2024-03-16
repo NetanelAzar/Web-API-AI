@@ -67,7 +67,7 @@ app.use(
     resave: false,
     saveUninitialized: true,
     cookie: { maxAge: twentyMin }, 
-    store: new MongoStore({  // storing sessions in MongoDB
+    store: new MongoStore({  // אחסון sessions  ב- MongoDB
       mongoUrl: process.env.MONGO_CONN + process.env.SESSION_DB,
     }),
   })

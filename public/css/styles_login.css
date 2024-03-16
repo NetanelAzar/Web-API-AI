@@ -1,36 +1,40 @@
-/* CSS for Login Form */
+/* עיצוב עבור טופס התחברות */
 #login-form {
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #222;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 400px; /* רוחב מקסימלי של הטופס */
+  margin: 0 auto; /* מירכוז הטופס באמצע העמוד */
+  padding: 20px; /* ריפוד בתוך הטופס */
+  background-color: #222; /* צבע רקע */
+  border-radius: 10px; /* פינות מעוגלות */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* אפקט צל */
 }
 
+/* עיצוב עבור שדות הקלט */
 #login-form input[type="text"],
 #login-form input[type="password"] {
-  width: calc(100% - 20px);
-  padding: 10px;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  width: calc(100% - 20px); /* רוחב השדה */
+  padding: 10px; /* ריפוד בתוך השדה */
+  margin-bottom: 20px; /* מרווח מתחת לשדה */
+  border: 1px solid #ccc; /* גבול */
+  border-radius: 5px; /* פינות מעוגלות */
 }
 
+/* עיצוב עבור כפתור השליחה */
 #login-form button[type="submit"] {
-  width: 100%;
-  background-color: #4caf50;
-  color: white;
-  padding: 10px 0;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+  width: 100%; /* רוחב הכפתור */
+  background-color: #4caf50; /* צבע רקע */
+  color: white; /* צבע טקסט */
+  padding: 10px 0; /* ריפוד בתוך הכפתור */
+  border: none; /* ללא גבול */
+  border-radius: 5px; /* פינות מעוגלות */
+  cursor: pointer; /* סמן עכבר ככפתור */
 }
 
+/* עיצוב כאשר העכבר עובר מעל הכפתור */
 #login-form button[type="submit"]:hover {
-  background-color: #45a049;
+  background-color: #45a049; /* צבע רקע במצב hover */
 }
 
+/* עיצוב כאשר הכפתור בפוקוס */
 #login-form button[type="submit"]:focus {
-  outline: none;
+  outline: none; /* הסר קו תחתון */
 }

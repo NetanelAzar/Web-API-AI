@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const shortId = require('shortid');
 
-// Defining a structure for the data we want to store in the database
+// הגדרת מבנה עבור הנתונים שאנחנו רוצים לאחסן במסד הנתונים
 const urlSchema = new mongoose.Schema({
   fullUrl: {
     type: String,
@@ -10,7 +10,7 @@ const urlSchema = new mongoose.Schema({
   shortUrl: {
     type: String,
     required: true,
-    default: shortId.generate,
+    default: shortId.generate, // יצירת קישור קצר באמצעות הספרייה shortid
   },
   clicks: {
     type: Number,
@@ -20,5 +20,3 @@ const urlSchema = new mongoose.Schema({
 });
 
 module.exports = mongoose.model('urls', urlSchema);
-
-
