@@ -1,7 +1,7 @@
 const routes = require("express").Router();
 const axios = require('axios');
 const cheerio = require('cheerio');
-
+const jwt = require('jsonwebtoken');
 // מסלול הבית
 routes.get("/", async (req, res) => {///כתבות חדשות 14
   try {
@@ -22,7 +22,17 @@ routes.get("/", async (req, res) => {///כתבות חדשות 14
           });
       });
 
-      res.render('home', { articles }); // השתמש בשם של המשתנה שלך בערך המקורי כאן
+          // פענוח הטוקן המוצפן ב-session על מנת לקבל את שם המשתמש
+          jwt.verify(req.session.user, process.env.PRIVATE_KEY, (err, decoded) => {
+            if (err) {
+                console.error(err);
+                return res.status(401).render("home", { layout: "main", title: "home" });
+            } else {
+                // אם הפענוח הצליח, מידע המזוהה עם המשתמש מוצג בתבנית התצוגה "shorturls"
+                const fullName = decoded.fullName;
+                return res.status(200).render("home", { layout: "main", title: "URL Shortener", articles, username: fullName });
+            }
+        });
   } catch (error) {
       console.error(error);
       res.status(500).send('An error occurred');
@@ -30,3 +40,8 @@ routes.get("/", async (req, res) => {///כתבות חדשות 14
 });
 
   module.exports = routes;
+
+
+
+  
+      

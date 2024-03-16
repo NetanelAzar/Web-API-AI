@@ -7,7 +7,7 @@ const verifyTokenMiddleware = (req, res, next) => {
     jwt.verify(req.session.user, process.env.PRIVATE_KEY, (err, decoded) => {
         if (err) {
             console.error(err);
-            return res.status(401).render("login", { layout: "main", title: "login" });
+            return res.status(401).render("Entrance", { layout: "main", title: "Entrance" });
         } else {
             // אם הפענוח הצליח, מידע המזוהה עם המשתמש מוצג בתבנית התצוגה "shorturls"
             const fullName = decoded.fullName;

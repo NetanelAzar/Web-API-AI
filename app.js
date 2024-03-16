@@ -9,11 +9,9 @@ const mysql = require("mysql"); // ייבוא המודול mysql
 const app = express(); // יצירת אפליקציה חדשה באמצעות express
 const hbs = require("express-handlebars"); // ייבוא המודול express-handlebars
 
-
 const twentyMin = 1000 * 60 * 20; // הגדרת זמן פג תוקף של ה-session
-
 // ייבוא נתיבי המשתמשים
-const userRoute = require("./API/V1/routes/user"); // ייבוא נתיב user
+const userRoute = require("./API/V1/routes/user");
 const adminRoute =require("./API/V1/routes/admin")
 const geminiRoute = require("./API/V1/routes/gemini");
 const logINRoute = require("./API/V1/routes/logIn");
@@ -23,8 +21,7 @@ const homeRoute = require("./API/V1/routes/home");
 const contactRoute = require("./API/V1/routes/contact")
 
 
-// יצירת חיבור למסד נתונים MySQL
-const connection = mysql.createConnection({
+const connection = mysql.createConnection({// יצירת חיבור למסד נתונים MySQL
   host: "127.0.0.1",
   user: process.env.MYSQL_USER,
   password: process.env.MYSQL_PRIVATE_PASS,
@@ -35,9 +32,9 @@ connection.connect(() => {  // התחברות למסד נתונים MySQL
 });
 global.db = connection; // הגדרת משתנה גלובלי עבור מסד הנתונים
 
-//התחברות למסד נתונים
+
 const ConnStr = process.env.MONGO_CONN;
-mongoose.connect(ConnStr + process.env.MONGO_DB).then((status) => {
+mongoose.connect(ConnStr + process.env.MONGO_DB).then((status) => {//התחברות למסד נתונים
   if (status) console.log("Connected to MongoDB");
   else console.log("Not Connected to MongoDB");
 });
@@ -51,8 +48,8 @@ app.use(morgan("combined")); // שימוש ב-morgan עם פורמט "combined"
 app.use(express.json()); // פעולה עבור קבלת JSON
 app.use(express.urlencoded({ extended: true })); // פעולה עבור קבלת נתונים בפורמט URL-encoded
 
-// הגדרת מנוע התצוגה של Handlebars
-app.engine(
+
+app.engine(// הגדרת מנוע התצוגה של Handlebars
   "hbs",
   hbs.engine({
     extname: "hbs",
@@ -63,9 +60,9 @@ app.engine(
 );
 
 
-// שימוש ב-session והגדרת הגדרות שונות עבורו
+
 app.use(
-  session({
+  session({// שימוש ב-session והגדרת הגדרות שונות עבורו
     secret: process.env.PRIVATE_KEY, 
     resave: false,
     saveUninitialized: true,
@@ -126,8 +123,7 @@ transporter.sendMail(mailOptions, function(error, info){
 
 
 app.get("/logout", (req, res) => {
-  // נקיה של הנתונים המזוהים עם המשתמש המחובר מהמאפיין `req.session`.
-  req.session.destroy((err) => {
+  req.session.destroy((err) => {// נקיה של הנתונים המזוהים עם המשתמש המחובר מהמאפיין `req.session`.
     if (err) {
       console.error("Error destroying session:", err);
       return res.status(500).send("Internal Server Error");
@@ -143,14 +139,13 @@ app.get("/logout", (req, res) => {
 
 
 // שימוש בנתיבי ה-API
-
 app.use("/contact",contactRoute );
-app.use("/text", geminiRoute);
-app.use("/login", logINRoute);
 app.use("/register", registerRoute);
+app.use("/login", logINRoute);
+app.use("/admin",adminRoute)
+app.use("/text", geminiRoute);
 app.use("/user", userRoute);
 app.use("/url", urlRoute);
-app.use("/admin",adminRoute)
 app.use("/",homeRoute);
 
 module.exports = app; // ייצוא של האפליקציה

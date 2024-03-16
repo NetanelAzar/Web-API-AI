@@ -64,7 +64,7 @@ module.exports = {
 
   register: (req, res) => {
     // פונקציה לרישום משתמש חדש
-    const { fullName, email, password, phone,isAdmin } = req.body; // שליפת פרטי המשתמש מהבקשה
+    const { fullName, email, password, phone,picname,isAdmin } = req.body; // שליפת פרטי המשתמש מהבקשה
     User.find({ email }).then((results) => {
       // בדיקה אם כבר קיים משתמש עם כתובת האימייל
       if (results.length > 0) {
@@ -80,6 +80,7 @@ module.exports = {
             email,
             pass: hashPass,
             phone,
+            picname,
             isAdmin,
            /// picname,
           }).then((results) => {

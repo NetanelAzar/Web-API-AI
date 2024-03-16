@@ -5,25 +5,7 @@
     <a style="color: white" target="_blank">
       <div id="exchangeRate" style="display: inline-block; margin-right: 100px;"></div>
       <div id="bitcoinRate" style="display: inline-block; margin-right: 20px;"></div>
-      <script>
-        // Fetch exchange rates
-        fetch('https://open.er-api.com/v6/latest/USD')
-          .then(response => response.json())
-          .then(data => {
-            const dollarRate = data.rates.ILS.toFixed(2);
-            document.getElementById('exchangeRate').innerHTML = `₪ שער הדולר הנוכחי:  ${dollarRate}`;
-          });
-
-        // Fetch Bitcoin rate
-        fetch('https://api.coindesk.com/v1/bpi/currentprice/BTC.json')
-          .then(response => response.json())
-          .then(data => {
-            const bitcoinRate = data.bpi.USD.rate;
-            document.getElementById('bitcoinRate').innerHTML = `$ מחיר הביטקוין הנוכחי: ${bitcoinRate}`;
-          });
-
- 
-      </script>
+      <script src="js/marquee.js" > </script>
     </a>
   </marquee>
 </h1>
@@ -48,14 +30,6 @@
 
 
 
-
-
- <section id="home-card">
-    <p>ברוכים הבאים.</p>
-    <p>לשימוש במערכת להרשמה או להתחברות.</p>
-    <button onclick="window.location.href='/register'">הירשם כאן</button>
-    <button onclick="window.location.href='/login'"> התחברות </button>
-  </section>
 
 
 

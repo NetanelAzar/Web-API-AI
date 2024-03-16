@@ -5,24 +5,34 @@
   padding: 20px; /* ריווח מסביב לתוכן */
   text-align: center; /* מרכז את התוכן לאורך האופק */
 }
-
 /* עיצוב לקופסה הראשית */
 #home-card {
+  display: flex; /* הצג את האלמנטים בתוך סדר גמיש */
+  flex-direction: column; /* הצג את האלמנטים בכיוון אנכי */
+  align-items: center; /* מרכוז את האלמנטים בציר האנכי */
+  justify-content: center; /* מרכוז את האלמנטים בציר האופקי */
   background-color: #1a1a1a; /* צבע רקע כהה */
   border-radius: 10px; /* פינות מעגלות */
   padding: 40px; /* ריווח בתוך הקופסה */
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* אפקט צל חזק */
-  
+  max-width: 100%; /* רוחב מקסימלי */
+  margin: 0 auto; /* מרכוז את הקופסה באמצע */
 }
 
 /* עיצוב לטקסט בתוך הקופסה */
 #home-card p {
   font-size: 20px; /* גודל פונט */
   color: #eee; /* צבע טקסט */
+  text-align: center; /* מרכוז את הטקסט באמצע */
   margin-bottom: 30px; /* ריווח מתחת לכל פסקה */
 }
 
 /* עיצוב לכפתורים */
+#home-card .buttons-container {
+  display: flex; /* הצג את האלמנטים בתוך סדר גמיש */
+  justify-content: center; /* מרכוז את האלמנטים בציר האופקי */
+}
+
 #home-card button {
   background-color: #ff4b2b; /* צבע רקע */
   color: white; /* צבע טקסט */
@@ -32,6 +42,7 @@
   font-size: 18px; /* גודל פונט */
   cursor: pointer; /* סמן עכבר ככפתור */
   transition: background-color 0.3s ease; /* אנימציה לשינוי צבע רקע */
+  margin: 10px; /* ריווח מסביב לכפתור */
 }
 
 /* אנימציה כאשר העכבר מעביר מעל הכפתור */
@@ -43,7 +54,6 @@
 #home-card button:focus {
   outline: none; /* הסר קו תחתון */
 }
-
 
 
 
@@ -111,41 +121,6 @@
   padding: 20px; /* ריווח מסביב לתוכן */
   text-align: center; /* מרכז את התוכן לאורך האופק */
 }
-
-/* עיצוב לקופסה הראשית */
-#home-card {
-  background-color: #1a1a1a; /* צבע רקע כהה */
-  border-radius: 10px; /* פינות מעגלות */
-  padding: 40px; /* ריווח בתוך הקופסה */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* אפקט צל חזק */
- 
-}
-
-/* עיצוב לטקסט בתוך הקופסה */
-#home-card p {
-  font-size: 20px; /* גודל פונט */
-  color: #eee; /* צבע טקסט */
-  margin-bottom: 30px; /* ריווח מתחת לכל פסקה */
-
-}
-
-/* עיצוב לכפתורים */
-#home-card button {
-
-  background-color: #ff4b2b; /* צבע רקע */
-  color: white; /* צבע טקסט */
-  padding: 15px 30px; /* ריווח בתוך הכפתור */
-  border: none; /* ללא גבולות */
-  border-radius: 5px; /* פינות מעגלות */
-  font-size: 18px; /* גודל פונט */
-  cursor: pointer; /* סמן עכבר ככפתור */
-  transition: background-color 0.3s ease; /* אנימציה ל*/
-
-
-
-
-}
-
 
 
 
