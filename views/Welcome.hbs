@@ -1,0 +1,32 @@
+   <style>
+        /* עיצוב לקופסה הראשית */
+        #welcome-card {
+            display: flex; /* הצג את האלמנטים בתוך סדר גמיש */
+            flex-direction: column; /* הצג את האלמנטים בכיוון אנכי */
+            align-items: center; /* מרכוז את האלמנטים בציר האנכי */
+            justify-content: center; /* מרכוז את האלמנטים בציר האופקי */
+            background-color: #1a1a1a; /* צבע רקע כהה */
+            border-radius: 10px; /* פינות מעגלות */
+            padding: 40px; /* ריווח בתוך הקופסה */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* אפקט צל חזק */
+            max-width: 100%; /* רוחב מקסימלי */
+            margin: 0 auto; /* מרכוז את הקופסה באמצע */
+            margin-top: 50px; /* ריווח מלמעלה */
+        }
+
+        /* עיצוב לטקסט בתוך הקופסה */
+        #welcome-card p {
+            font-size: 20px; /* גודל פונט */
+            color: #eee; /* צבע טקסט */
+            text-align: center; /* מרכוז את הטקסט באמצע */
+            margin-bottom: 30px; /* ריווח מתחת לכל פסקה */
+        }
+    </style>
+<div id="welcome-card">
+    <p>{{username}}</p>
+    <img src="{{profileImage}}" alt="Profile Image">
+    <p>Welcome</p>
+    <p>you have successfully logged in!</p>
+    <p>ברוך הבא,  התחברת בהצלחה! </p>
+</div>
+<a href="{{profileImage}}" target="_blank">View Image</a>

@@ -3,7 +3,7 @@ const logIn = require("../models/login"); //
 const bcrypt = require("bcrypt"); // יבוא המודול bcrypt
 const jwt = require("jsonwebtoken"); // יבוא המודול jsonwebtoken
 const nodemailer = require('nodemailer');
-
+const news=require("./news");
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -80,7 +80,7 @@ module.exports = {
             email,
             pass: hashPass,
             phone,
-            picname,
+            picname:req.file.filename,
             isAdmin,
            /// picname,
           }).then((results) => {
@@ -145,14 +145,13 @@ module.exports = {
             // שמירת הטוקן בסשן
             req.session.user = token;
 
-           // הפניה לנתיב הראשי במקרה שהמשתמש הוא מנהל
-           
-if (myUser.isAdmin) {
-  return res.redirect("/admin");
-} else {
-  // הפניה לדף "home" במקרה שהמשתמש אינו מנהל
-  return res.render("home", { layout: "main", title: "home", username: myUser.fullName });
-}
+            // הפניה לנתיב הראשי במקרה שהמשתמש הוא מנהל
+            if (myUser.isAdmin) {
+                return res.redirect("/admin");
+            } else {
+                // הפניה לדף "home" במקרה שהמשתמש אינו מנהל
+                return res.render("Welcome", { layout: "main", title: "Welcome", username: myUser.fullName});
+            }
 
         }).catch((error) => {
             console.error("Error comparing passwords:", error);
@@ -163,4 +162,5 @@ if (myUser.isAdmin) {
         return res.status(500).json({ message: "Internal server error" });
     });
 },
+
 };

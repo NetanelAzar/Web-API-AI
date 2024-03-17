@@ -1,4 +1,4 @@
-      // Fetch exchange rates
+      // אחזור של שערי החליפין
       fetch('https://open.er-api.com/v6/latest/USD')
       .then(response => response.json())
       .then(data => {
@@ -6,11 +6,10 @@
         document.getElementById('exchangeRate').innerHTML = `₪ שער הדולר הנוכחי:  ${dollarRate}`;
       });
 
-    // Fetch Bitcoin rate
+    // אחזור של מחיר הביטקוין
     fetch('https://api.coindesk.com/v1/bpi/currentprice/BTC.json')
       .then(response => response.json())
       .then(data => {
         const bitcoinRate = data.bpi.USD.rate;
         document.getElementById('bitcoinRate').innerHTML = `$ מחיר הביטקוין הנוכחי: ${bitcoinRate}`;
       });
-
