@@ -1,12 +1,12 @@
 document.getElementById('btnGenerateText').addEventListener("click", (event)=> {
   // הבאת ערך הטקסט שהוזן על ידי המשתמש
-  let Prompt = document.getElementById('userGenerate').value;
-  console.log(Prompt);
+  let prompt = document.getElementById('userGenerate').value;
+  console.log(prompt);
 
   // שליחת בקשת POST לשרת עם הטקסט המוזן
   fetch('/text', {
     method: 'POST',
-    body: JSON.stringify({ Prompt }), // המרת הטקסט לפורמט JSON
+    body: JSON.stringify({ prompt }), // המרת הטקסט לפורמט JSON
     headers: {
       'Content-Type': 'application/json' // הגדרת סוג התוכן ל־JSON
     }

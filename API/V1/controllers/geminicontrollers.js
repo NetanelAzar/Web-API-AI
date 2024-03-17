@@ -13,6 +13,7 @@ module.exports = {
 
     const prompt = req.body.prompt;
     console.log(req.body);
+    console.log(prompt);
     const result = await geminiModel.generateContent(prompt);
     const response = await result.response;
     const text = response.text();
