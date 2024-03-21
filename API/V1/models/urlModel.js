@@ -3,6 +3,7 @@ const shortId = require('shortid');
 
 // הגדרת מבנה עבור הנתונים שאנחנו רוצים לאחסן במסד הנתונים
 const urlSchema = new mongoose.Schema({
+  
   fullUrl: {
     type: String,
     required: true,

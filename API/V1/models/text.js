@@ -3,6 +3,10 @@ mongoose.pluralize(null); // הגדרת ייבוס לשמות הטבלאות
 
 const Schema = mongoose.Schema({
   // הגדרת סכמה עבור מודל הטקסט
+  userEmail: {
+    type: String,
+    required: true
+      },
   prompt: String, // שדה עבור הפרסום
   answer: String, // שדה עבור התשובה
   created_at: { type: Date, default: Date.now }, // שדה עבור זמן יצירה

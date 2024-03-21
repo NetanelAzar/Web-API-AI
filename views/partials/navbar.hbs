@@ -1,4 +1,14 @@
-  <nav>
+<style>
+  #profile-image {
+  width: 30px; /* רוחב התמונה */
+  height: 30px; /* גובה התמונה */
+  border-radius: 50%; /* עיגול קצוות התמונה כדי ליצור פורמט עיגולי */
+  margin-right: 10px; /* מרווח ימני בין התמונה לשאר רכיבי הבר */
+}
+</style>
+
+
+<nav>
     <div class="nav-left">
         <a href="/">Home</a>
         <a href="/text">GeminiAI</a>
@@ -6,8 +16,14 @@
         <a href="/contact">Contact</a>
     </div>
     <div class="nav-right">
-        <span class="username">{{username}}</span>
-        <a href="login/logout">Logout</a>
-        
-    </div>
+       
+
+<div class="nav-right">
+    {{#if isLoggedIn}}
+        <img src="{{profileImage}}" alt="Profile Image" id="profile-image">
+    {{/if}}
+    <span class="username">{{username}}</span>
+    <a href="login/logout">Logout</a>
+</div>
+
 </nav>
