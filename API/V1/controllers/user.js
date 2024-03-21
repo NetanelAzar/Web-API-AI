@@ -3,7 +3,6 @@ const logIn = require("../models/login"); //
 const bcrypt = require("bcrypt"); // יבוא המודול bcrypt
 const jwt = require("jsonwebtoken"); // יבוא המודול jsonwebtoken
 const nodemailer = require('nodemailer');
-const news=require("./news");
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -64,7 +63,15 @@ module.exports = {
 
   register: (req, res) => {
     // פונקציה לרישום משתמש חדש
-    const { fullName, email, password, phone,picname,isAdmin } = req.body; // שליפת פרטי המשתמש מהבקשה
+    const { fullName, email, password, phone,isAdmin } = req.body; // שליפת פרטי המשתמש מהבקשה
+    let picname;
+
+    if (req.file) {
+        picname = req.file.filename; // אם המשתמש העלה תמונה, נשתמש בה
+    } else {
+        picname = '9753.jpg'; // אם המשתמש לא העלה תמונה, נשתמש בתמונת ברירת המחדל
+    }
+
     User.find({ email }).then((results) => {
       // בדיקה אם כבר קיים משתמש עם כתובת האימייל
       if (results.length > 0) {
@@ -73,14 +80,15 @@ module.exports = {
       } else {
         // אם אין משתמש עם כתובת האימייל
         bcrypt.hash(password, 10).then((hashPass) => {
+
           // הצפנת הסיסמה
           User.insertMany({
             // הוספת המשתמש החדש למודל user
             fullName,
             email,
-            pass: hashPass,
+            password: hashPass,
             phone,
-            picname:req.file.filename,
+            picname,
             isAdmin,
            /// picname,
           }).then((results) => {
@@ -121,7 +129,7 @@ module.exports = {
             return res.status(404).json({ message: "Email or password incorrect" });
         }
 
-        const hashPass = results[0].pass;
+        const hashPass = results[0].password;
 
         // בדיקה אם לא נמצאה סיסמה מוצפנת בבסיס הנתונים
         if (!hashPass || hashPass.length === 0) {
@@ -134,24 +142,30 @@ module.exports = {
                 return res.status(401).json({ message: "Email or password incorrect" });
             }
 
-            // אם הכל תקין - יצירת טוקן
+            // אם הכל תקין - יצירת טוקן ושליפת התמונה
             const myUser = results[0];
-            
             const token = jwt.sign(
                 { email, password, fullName: myUser.fullName },
                 process.env.PRIVATE_KEY,
                 { expiresIn: "1h" }
             );
+
             // שמירת הטוקן בסשן
             req.session.user = token;
 
-            // הפניה לנתיב הראשי במקרה שהמשתמש הוא מנהל
-            if (myUser.isAdmin) {
-                return res.redirect("/admin");
-            } else {
-                // הפניה לדף "home" במקרה שהמשתמש אינו מנהל
-                return res.render("Welcome", { layout: "main", title: "Welcome", username: myUser.fullName});
-            }
+            // שליפת התמונה מהבסיס נתונים
+            User.findOne({ email }).then((user) => {
+                // הפניה לתבנית ה-HTML עם התמונה
+                res.render("Welcome", {
+                    layout: "main",
+                    title: "Welcome",
+                    username: myUser.fullName,
+                    profileImage: `/uploads/pics/${user.picname}` // כתובת ה-URL של התמונה
+                });
+            }).catch((error) => {
+                console.error("Error fetching user data:", error);
+                return res.status(500).json({ message: "Internal server error" });
+            });
 
         }).catch((error) => {
             console.error("Error comparing passwords:", error);

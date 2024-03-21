@@ -77,7 +77,7 @@ app.use(
 
 
 
-
+/*
 var nodemailer = require('nodemailer');
 
 var transporter = nodemailer.createTransport({
@@ -104,7 +104,7 @@ transporter.sendMail(mailOptions, function(error, info){
 });
 
 
-
+*/
 
 
 // שימוש בנתיבי ה-API
