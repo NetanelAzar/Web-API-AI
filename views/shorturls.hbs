@@ -1,7 +1,7 @@
 <div class="containerUrl">
     <h1>URL Shortener</h1> <!-- כותרת "מקצר כתובות URL" -->
 
-    <form action="url/shorten" method="post">
+    <form action="url/shorten/" method="post">
         <label for="fullUrl">Enter URL:</label> <!-- תווית לשדה הטקסט של קלט ה-URL -->
         <input type="text" name="fullUrl" id="fullUrl" required>
         <button type="submit">Shorten</button> <!-- כפתור לקיצור ה-URL -->
@@ -19,7 +19,7 @@
             {{#each urls}} <!-- הצגת כל ה-URLs בטבלה -->
             <tr>
                 <td><a href="{{this.fullUrl}}" target="_blank">{{this.fullUrl}}</a></td> <!-- קישור ל-URL המלא -->
-                <td><a href="{{this.shortUrl}}" target="_blank">{{this.shortUrl}}</a></td> <!-- קישור ל-URL הקצר -->
+                <td><a href="url/{{this.shortUrl}}" target="_blank">{{this.shortUrl}}</a></td>
                 <td>{{this.clicks}}</td> <!-- מספר הקליקים על הקישור -->
             </tr>
             {{/each}}

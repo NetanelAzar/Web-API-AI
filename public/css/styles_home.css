@@ -1,10 +1,16 @@
-/* עיצוב ראשי לעמוד הבית */
+
+/* עיצוב לחלק הראשי של האתר */
 #homeAI {
   max-width: 800px; /* רוחב מקסימלי */
   margin: 0 auto; /* מרכז את התוכן באמצע הדף */
   padding: 20px; /* ריווח מסביב לתוכן */
   text-align: center; /* מרכז את התוכן לאורך האופק */
 }
+
+
+
+
+
 /* עיצוב לקופסה הראשית */
 #home-card {
   display: flex; /* הצג את האלמנטים בתוך סדר גמיש */
@@ -114,17 +120,6 @@
   color: #555; /* צבע טקסט */
 }
 
-/* עיצוב לחלק הראשי של האתר */
-#homeAI {
-  max-width: 800px; /* רוחב מקסימלי */
-  margin: 0 auto; /* מרכז את התוכן באמצע הדף */
-  padding: 20px; /* ריווח מסביב לתוכן */
-  text-align: center; /* מרכז את התוכן לאורך האופק */
-}
-
-
-
-
 
 
 /* עיצוב קטע הכתבות */
@@ -160,4 +155,35 @@
 /* עיצוב הקישור בעת העברת העכבר מעליו */
 .article a:hover {
   text-decoration: underline; /* הוספת קו תחתון בעת hover */
+}
+
+
+
+
+
+
+
+
+
+             /*clock*/
+.clock {
+  width: 200px; /* רוחב קבוע של כל שעון */
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #0c0303;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin: 10px; /* ריווח בין השעונים */
+  display: inline-block; /* תצוגה כשעונים אופקיים אחד ליד השני */
+  vertical-align: top; /* יישור למעלה כדי שכל השעונים יהיו באותה גובה */
+}
+
+.clock-city {
+  font-size: 20px;
+  color: #333;
+}
+
+.clock-time {
+  font-size: 24px;
+  color: #555;
 }

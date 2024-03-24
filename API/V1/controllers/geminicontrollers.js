@@ -67,7 +67,7 @@ module.exports = {
     // Find texts created by the current user
     Text.find({ userEmail: userEmail }).lean().then((texts) => {
       // Render the page with the texts created by the user
-      return res.status(200).render("text", { layout: "main", title: "My Texts", text: texts, username: req.user });
+      return res.status(200).render("text", { layout: "main", title: "My Texts", text: texts, username: req.user,profileImage: req.session.profileImage });
     }).catch((error) => {
       console.error("Error occurred while fetching texts:", error);
       return res.status(500).send("Internal server error.");

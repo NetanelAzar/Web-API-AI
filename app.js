@@ -5,6 +5,7 @@ const session = require("express-session"); // ייבוא המודול express-s
 const mongoose = require("mongoose"); // ייבוא המודול mongoose
 mongoose.pluralize(null); // מונע מ-Mongoose להמיר את שמות הדגמים לשמות הקולקציות במסד הנתונים
 const MongoStore = require("connect-mongo"); // ייבוא המודול connect-mongo
+const { DateTime } = require("luxon");
 const mysql = require("mysql"); // ייבוא המודול mysql
 const app = express(); // יצירת אפליקציה חדשה באמצעות express
 const hbs = require("express-handlebars"); // ייבוא המודול express-handlebars
@@ -16,9 +17,14 @@ const adminRoute =require("./API/V1/routes/admin")
 const geminiRoute = require("./API/V1/routes/gemini");
 const logINRoute = require("./API/V1/routes/logIn");
 const registerRoute = require("./API/V1/routes/register");
+const qrRoute=require("./API/V1/routes/qrcode");
 const urlRoute = require("./API/V1/routes/url");
 const homeRoute = require("./API/V1/routes/home");
 const contactRoute = require("./API/V1/routes/contact")
+
+const now = DateTime.now();// יצירת אובייקט DateTime עבור הזמן הנוכחי
+const formattedDateTime = now.toFormat('yyyy-MM-dd HH:mm:ss');// קבלת התאריך והשעה בפורמט מבוקש (YYYY-MM-DD HH:MM:SS)
+console.log(formattedDateTime);// הדפסת התאריך והשעה
 
 
 const connection = mysql.createConnection({// יצירת חיבור למסד נתונים MySQL
@@ -75,38 +81,6 @@ app.use(
 
 
 
-
-
-/*
-var nodemailer = require('nodemailer');
-
-var transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS
-  }
-});
-
-var mailOptions = {
-  from:'netanelazar880@gmail.com' ,
-  to: 'netanelazar880@gmail.com',
-  subject: 'Sending Email using Node.js',
-  text: 'That was easy!'
-};
-
-transporter.sendMail(mailOptions, function(error, info){
-  if (error) {
-    console.log(error);
-  } else {
-    console.log('Email sent: ' + info.response);
-  }
-});
-
-
-*/
-
-
 // שימוש בנתיבי ה-API
 app.use("/contact",contactRoute );
 app.use("/register", registerRoute);
@@ -115,6 +89,43 @@ app.use("/admin",adminRoute)
 app.use("/text", geminiRoute);
 app.use("/user", userRoute);
 app.use("/url", urlRoute);
+app.use("/qr", qrRoute);
 app.use("/",homeRoute);
+
+
+
+
+app.all("*", (req, res) => {
+  res.status(404).send(`
+    <html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="refresh" content="3; url=/">
+  <title>{{title}}</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .content {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <h1>404 Not Found</h1>
+    <p>The requested URL ${req.originalUrl} was not found on this server.</p>
+    <p>Redirecting to <a href="/">Home Page</a> in 3 seconds...</p>
+  </div>
+</body>
+</html>
+
+  `);
+});
 
 module.exports = app; // ייצוא של האפליקציה

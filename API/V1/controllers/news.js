@@ -21,7 +21,7 @@ module.exports={
             });
           });
           const fullName = req.user;
-          return res.status(200).render("home", { layout: "main", title: "URL Shortener", articles,username: fullName }); // הצגת הדף הראשי עם 
+          return res.status(200).render("home", { layout: "main", title: "URL Shortener", articles,username: fullName,profileImage: req.session.profileImage }); // הצגת הדף הראשי עם 
         } catch (error) { // במקרה של שגיאה כללית
           console.error(error);
           res.status(500).send('An error occurred'); // החזרת הודעת שגיאה כללית

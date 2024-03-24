@@ -1,13 +1,16 @@
 
 const routes = require("express").Router();
+var nodemailer = require('nodemailer');
 const verifyTokenMiddleware = require("../middlewares/verifyTokenMiddleware");
 
+const {
+  getContact,
+  sendMailContact
+}=require("../controllers/contact");
+
 // מסלול יצירת קשר
-routes .get("/",verifyTokenMiddleware,(req,res)=>{
-  const fullName = req.user; // משתמש במידע המזוהה עם המשתמש מהמידלוור
-    return res.status(200).render("contact", { layout: "main", title: "contact",username: fullName });
-    
-  } );
+routes .get("/",verifyTokenMiddleware,getContact );
   
+routes.post('/send-email', sendMailContact);
 
   module.exports = routes;

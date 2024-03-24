@@ -10,7 +10,8 @@ routes.get("/", verifyTokenMiddleware, async (req, res) => {
     const text = await Text.find().lean(); // מקבל את כל הטקסטים
     const url = await Url.find().lean(); // מקבל את כל הכתובות ה-URL
     const users = await User.find().lean(); // מקבל את כל המשתמשים
-    return res.status(200).render("admin", { layout: "index", title: "admin", users, text, url });
+    const sessionCount = req.sessionCount; // מקבל את מספר המשתמשים המחוברים מהמידלוור
+    return res.status(200).render("admin", { layout: "index", title: "admin", users, text, url,sessionCount });
   } catch (err) {
     console.error(err);
     return res.status(500).send("Internal Server Error");

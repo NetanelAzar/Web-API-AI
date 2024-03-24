@@ -76,7 +76,7 @@ module.exports = {
       // בדיקה אם כבר קיים משתמש עם כתובת האימייל
       if (results.length > 0) {
         // אם קיים משתמש עם כתובת האימייל
-        return res.status(200).json({ message: "Email is already taken" }); // החזרת הודעת שגיאה
+        return res.status(200).render("register", { layout: "main", title: "Register", error: "Email is already taken" }); // החזרת הודעת שגיאה
       } else {
         // אם אין משתמש עם כתובת האימייל
         bcrypt.hash(password, 10).then((hashPass) => {
@@ -116,17 +116,17 @@ module.exports = {
     });
   },
   login: (req, res) => {
-    const { email, password, isAdmin } = req.body;
+    const { email, password } = req.body;
 
     // בדיקה אם האימייל והסיסמה נשלחו בבקשה
     if (!email || !password) {
-        return res.status(400).json({ message: "Email and password are required" });
+        return res.status(400).render('login', { error: "Email and password are required"});
     }
 
     logIn.find({ email }).then((results) => {
         // אם לא נמצאו תוצאות עבור האימייל
         if (results.length === 0) {
-            return res.status(404).json({ message: "Email or password incorrect" });
+          return res.status(404).render('login', { error: "Email or password incorrect" });
         }
 
         const hashPass = results[0].password;
@@ -139,13 +139,13 @@ module.exports = {
         // השוואת הסיסמה הקלה לסיסמה המוצפנת
         bcrypt.compare(password, hashPass).then((status) => {
             if (!status) {
-                return res.status(401).json({ message: "Email or password incorrect" });
+              return res.status(401).render('login', { error: "Email or password incorrect" });
             }
 
             // אם הכל תקין - יצירת טוקן ושליפת התמונה
             const myUser = results[0];
             const token = jwt.sign(
-                { email, password, fullName: myUser.fullName },
+                { email, password, fullName: myUser.fullName},
                 process.env.PRIVATE_KEY,
                 { expiresIn: "1h" }
             );
@@ -153,20 +153,28 @@ module.exports = {
             // שמירת הטוקן בסשן
             req.session.user = token;
 
-            // שליפת התמונה מהבסיס נתונים
-            User.findOne({ email }).then((user) => {
-                // הפניה לתבנית ה-HTML עם התמונה
-                res.render("Welcome", {
-                    layout: "main",
-                    title: "Welcome",
-                    username: myUser.fullName,
-                    profileImage: `/uploads/pics/${user.picname}` // כתובת ה-URL של התמונה
-                });
-            }).catch((error) => {
-                console.error("Error fetching user data:", error);
-                return res.status(500).json({ message: "Internal server error" });
-            });
+            // כאן אני יודע אם המשתמש הוא admin
+            const isAdmin = myUser.isAdmin;
 
+            if (isAdmin) {
+              // המשתמש הוא admin, שלח אותו ישירות לדף ה-admin
+              return res.redirect('/admin');
+          }
+           else {
+                // אם המשתמש אינו admin, המשך עם הלוגיקה הרגילה
+                User.findOne({ email }).then((user) => {
+                    // הפניה לתבנית ה-HTML עם התמונה
+                    return res.render("Welcome", {
+                        layout: "main",
+                        title: "Welcome",
+                        username: myUser.fullName,
+                        profileImage: `/uploads/pics/${user.picname}` // כתובת ה-URL של התמונה
+                    });
+                }).catch((error) => {
+                    console.error("Error fetching user data:", error);
+                    return res.status(500).json({ message: "Internal server error" });
+                });
+            }
         }).catch((error) => {
             console.error("Error comparing passwords:", error);
             return res.status(500).json({ message: "Internal server error" });

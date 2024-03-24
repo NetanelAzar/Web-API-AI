@@ -9,21 +9,30 @@
 
 
 <nav>
-    <div class="nav-left">
-        <a href="/">Home</a>
-        <a href="/text">GeminiAI</a>
-        <a href="/url">ShortURL</a>
-        <a href="/contact">Contact</a>
-    </div>
-    <div class="nav-right">
-       
-
-<div class="nav-right">
-    {{#if isLoggedIn}}
-        <img src="{{profileImage}}" alt="Profile Image" id="profile-image">
+  <div class="nav-left">
+    <a href="/">Home</a>
+    <a href="/text">GeminiAI</a>
+    <a href="/url">ShortURL</a>
+      <a href="/qr">QRcode</a>
+    <a href="/contact">Contact</a>
+  </div>
+  <div class="nav-right">
+    <!-- תנאי לבדיקת התחברות המשתמש -->
+    {{#if username}}
+      <!-- הצגת תמונת פרופיל -->
+      <img src="{{profileImage}}" alt="Profile Image" id="profile-image">
+      <!-- הצגת שם המשתמש -->
+      <span class="username">{{username}}</span>
+      <!-- קישור להתנתקות -->
+      <a href="/login/logout">Logout</a>
+      <!-- תנאי לבדיקת האם המשתמש הוא מנהל -->
+      {{#if isAdmin}}
+        <!-- אם המשתמש הוא מנהל, הצגת כפתור לדף ה-Admin -->
+        <a href="/admin">Admin Page</a>
+      {{/if}}
+    {{else}}
+      <!-- אם המשתמש לא מחובר, הצגת קישור להתחברות -->
+      <a href="/login">Login</a> / <a href="/register">Signup</a>
     {{/if}}
-    <span class="username">{{username}}</span>
-    <a href="login/logout">Logout</a>
-</div>
-
+  </div>
 </nav>

@@ -23,13 +23,17 @@
                     <th>is Admin</th> <!-- כותרת העמודה "האם מנהל" -->
                     <th>Option</th> <!-- כותרת העמודה "אפשרויות" -->
                 </tr>
-                <tr>
-                    <td>{{this.fullName}}</td> <!-- שם המשתמש -->
-                    <td>{{this.email}}</td> <!-- כתובת הדוא"ל של המשתמש -->
-                    <td>{{this.phone}}</td> <!-- מספר הטלפון של המשתמש -->
-                    <td>{{this.isAdmin}}</td> <!-- האם המשתמש הוא מנהל -->
-                    <td><button onclick="deleteUser('{{this._id}}')">Delete</button></td> <!-- כפתור מחיקת המשתמש -->
-                </tr>
+   <tr>
+    <td class="name">{{this.fullName}}</td>
+    <td class="email">{{this.email}}</td>
+    <td class="phone">{{this.phone}}</td>
+    <td class="admin">{{this.isAdmin}}</td>
+    <td class="option">
+        <button onclick="deleteUser('{{this._id}}')">Delete</button>
+    </td>
+</tr>
+
+
             </table>
             {{/each}}
 

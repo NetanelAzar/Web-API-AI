@@ -3,13 +3,13 @@
   .containerUrl {
     max-width: 800px;
     margin: auto;
-    background-color: #fff;
+    background-color: #ffffff5c;
     padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.041);
   }
   
  .containerUrl h1, h2 {
-    color: #333;
+    color: white;
   }
   
  .containerUrl form {
@@ -20,6 +20,7 @@
     font-weight: bold;
     display: block;
     margin-bottom: 5px;
+    color: white;
   }
   
  .containerUrl input {

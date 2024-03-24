@@ -49,13 +49,44 @@ h3 {
 }
 
 table {
-    padding: 10px; /* ריווחים בתוך הטבלה */
+    border-collapse: collapse; /* מאפשר לגבולות להתמזג */
+    width: 100%; /* רוחב הטבלה */
 }
 
-th,
-td {
-    text-align: left; /* יישור טקסט לשמאל בתוך התאים */
+th, td {
+    border: 1px solid #ddd; /* הוספת גבול לתאים */
     padding: 8px; /* ריווחים בתוך התאים */
+    text-align: left; /* יישור הטקסט לשמאל */
+}
+
+th {
+    background-color: #f2f2f2; /* רקע צבע אפור לכותרות העמודות */
+    color: black; /* צבע הטקסט בכותרות העמודות */
+}
+
+
+td.name,
+td.email,
+td.phone,
+td.admin,
+td.option {
+    width: 20%; /* קיבוע רוחב לכל תא */
+    white-space: nowrap; /* אפשרות להציג את כל התוכן בשורה אחת */
+    overflow: hidden; /* מניעת המראה של תוכן מיותר מחוץ לתא */
+    text-overflow: ellipsis; /* הצגת נקודות ניתוח (...) עבור תוכן שחורג ממסגרת התא */
+}
+
+td.option button {
+    background-color: #f05462; /* צביעת רקע כפתור */
+    color: white; /* צביעת טקסט כפתור */
+    border: none; /* הסרת גבולות */
+    padding: 5px 10px; /* ריווחים בפנים לכפתור */
+    cursor: pointer; /* הפיכת הסמן לכפתור */
+}
+
+td.option button:hover {
+    background-color: white; /* צביעת רקע כפתור בעת העכבר מעליו */
+    color: #f05462; /* צביעת טקסט כפתור בעת העכבר מעליו */
 }
 
 .side-menu {

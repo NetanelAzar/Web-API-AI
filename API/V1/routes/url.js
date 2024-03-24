@@ -3,7 +3,7 @@ const verifyTokenMiddleware = require("../middlewares/verifyTokenMiddleware");
 const { getUrl, addShorten, getShortUrl } = require('../controllers/shorturl');
 
 // מסלול קבלת כתובת המקוצרת
-routes.get('/', verifyTokenMiddleware, getUrl);
+routes.get('/',verifyTokenMiddleware, getUrl);
 
 // מסלול יצירת קיצור כתובת מקורית
 routes.post('/shorten', addShorten);

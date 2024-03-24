@@ -27,16 +27,17 @@
                 <img src="schools.png" alt=""> <!-- תמונת סמל URL -->
             </div>
         </div>
-        <div class="card">
-            <div class="box">
-                <h1>0</h1> <!-- מספר המשתמשים המחוברים -->
-                <h3>משתמשים מחוברים</h3> <!-- כותרת "משתמשים מחוברים" -->
-            </div>
-            <div class="icon-case">
-                <img src="income.png" alt=""> <!-- תמונת סמל המשתמשים המחוברים -->
-            </div>
-        </div>
+
+      <div class="card">
+    <div class="box">
+        <h1>{{ sessionCount }}</h1> <!-- מספר המשתמשים המחוברים -->
+        <h3>משתמשים מחוברים</h3> <!-- כותרת "משתמשים מחוברים" -->
     </div>
+    <div class="icon-case">
+        <img src="income.png" alt=""> <!-- תמונת סמל המשתמשים המחוברים -->
+    </div>
+</div>
+
 
     <div class="content-2">
         <div class="recent-payments">
@@ -52,14 +53,14 @@
                     <th>Email</th>
                     <th>phone</th>
                     <th>isAdmin</th>
-                    <th>Option</th>
+                    
                 </tr>
                 <tr>
                     <td>{{this.fullName}}</td>
                     <td>{{this.email}}</td>
                     <td>{{this.phone}}</td>
                     <td>{{this.isAdmin}}</td>
-                    <td><a href="#" class="btn">View</a></td>
+                    
                 </tr>
             </table>
             {{/each}}

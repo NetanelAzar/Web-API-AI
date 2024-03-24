@@ -18,12 +18,14 @@
                     {{#each text}}
                         <tr>
                             
+                            <th>user Email</th>
                             <th>User</th>
                             <th>Gemini</th>
                             
                         </tr>
                         
                         <tr>
+                            <td>{{this.userEmail}}</td>
                             <td>{{this.prompt}}</td>
                             <td>{{this.answer}}</td>
                         </tr>

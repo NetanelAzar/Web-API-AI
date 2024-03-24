@@ -24,6 +24,7 @@
     "express-session": "^1.18.0",
     "googleapis": "^133.0.0",
     "jsonwebtoken": "^9.0.2",
+    "luxon": "^3.4.4",
     "mongoose": "^8.2.0",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
@@ -31,6 +32,9 @@
     "nodemailer": "^6.9.12",
     "nodemon": "^3.1.0",
     "path": "^0.12.7",
+    "puppeteer": "^22.6.0",
+    "qrcode": "^1.5.3",
+    "request-promise": "^4.2.6",
     "shortid": "^2.2.16",
     "vb": "^0.0.0"
   }
