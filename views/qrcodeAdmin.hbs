@@ -1,0 +1,40 @@
+            <div class="content">
+          
+               
+                 
+
+
+
+
+
+
+
+            <div class="content-2">
+                <div class="recent-payments">
+
+ 
+                    <table>
+
+                    {{#each QRcode}}
+                        <tr>
+                            
+                            <th>user Email</th>
+                            <th>Link</th>
+                            <th>QR</th>
+                            
+                        </tr>
+                        
+                        <tr>
+                            <td>{{this.userEmail}}</td>
+                            <td>{{this.githubLink}}</td>
+                            <td><img src="{{this.qrCode}}" alt="QR Code"></td>
+
+                        </tr>
+                        {{/each}}
+
+                        </table>
+
+
+                </div>
+            </div>
+            </div>

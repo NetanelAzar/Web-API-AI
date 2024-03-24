@@ -3,6 +3,7 @@ const verifyTokenMiddleware = require("../middlewares/verifyTokenMiddleware");
 const User = require("../models/user"); // מקשר למודל של משתמש
 const Text = require("../models/text"); // מקשר למודל של טקסט
 const Url = require("../models/urlModel"); // מקשר למודל של כתובות URL
+const qr = require("../models/qrcode"); // מקשר למודל של כתובות URL
 
 
 routes.get("/", verifyTokenMiddleware, async (req, res) => {
@@ -10,8 +11,9 @@ routes.get("/", verifyTokenMiddleware, async (req, res) => {
     const text = await Text.find().lean(); // מקבל את כל הטקסטים
     const url = await Url.find().lean(); // מקבל את כל הכתובות ה-URL
     const users = await User.find().lean(); // מקבל את כל המשתמשים
+    const QRcode = await qr.find().lean(); // מקבל את כל הכתובות ה-URL
     const sessionCount = req.sessionCount; // מקבל את מספר המשתמשים המחוברים מהמידלוור
-    return res.status(200).render("admin", { layout: "index", title: "admin", users, text, url,sessionCount });
+    return res.status(200).render("admin", { layout: "index", title: "admin", users, text, url,sessionCount,QRcode });
   } catch (err) {
     console.error(err);
     return res.status(500).send("Internal Server Error");
@@ -48,5 +50,13 @@ routes.get("/shorturls", async (req, res) => {
     return res.status(500).send("Internal Server Error");
   }
 });
+
+routes.get("/qrcodeAdmin", async (req, res) => {
+  const QRcode = await qr.find().lean(); // מקבל את כל הכתובות ה-URL
+  return res.status(200).render("qrcodeAdmin", { layout: "index", title: "admin", QRcode });
+});
+
+
+
 
 module.exports = routes;
