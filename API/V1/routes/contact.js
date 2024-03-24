@@ -8,9 +8,9 @@ const {
   sendMailContact
 }=require("../controllers/contact");
 
-// מסלול יצירת קשר
-routes .get("/",verifyTokenMiddleware,getContact );
+
+routes .get("/",verifyTokenMiddleware,getContact );// מסלול יצירת קשר
   
-routes.post('/send-email', sendMailContact);
+routes.post('/send-email', sendMailContact);// מסלול לשליחת הודעה 
 
   module.exports = routes;

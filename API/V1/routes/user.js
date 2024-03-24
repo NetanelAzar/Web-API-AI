@@ -1,28 +1,23 @@
 const routes = require("express").Router();
-const session = require("../middlewares/authSession");
+
 const {
   getAllUsers,
   getUserById,
   addUser,
   updateUser,
   deleteUser,
-  register,
-  login,
+ 
 } = require("../controllers/user");
 
-// מסלול קבלת כל המשתמשים
-routes.get("/", getAllUsers);
 
-// מסלול קבלת משתמש על פי זיהוי
-routes.get("/:id", getUserById);
+routes.get("/", getAllUsers);// מסלול קבלת כל המשתמשים
 
-// מסלול הוספת משתמש חדש
-routes.post("/", addUser);
+routes.get("/:id", getUserById);// מסלול קבלת משתמש על פי זיהוי
 
-// מסלול עדכון משתמש קיים
-routes.patch("/:id", updateUser);
+routes.post("/", addUser);// מסלול הוספת משתמש חדש
 
-// מסלול מחיקת משתמש על פי זיהוי
-routes.delete("/:id", deleteUser);
+routes.patch("/:id", updateUser);// מסלול עדכון משתמש קיים
+
+routes.delete("/:id", deleteUser);// מסלול מחיקת משתמש על פי זיהוי
 
 module.exports = routes;

@@ -6,11 +6,8 @@ getQRCode,
 getQRCodePost
 }=require("../controllers/qecode");
 
+routes.get("/", verifyTokenMiddleware,getQRCode);// מסלול GET עבור הדף ה־QR Code
 
-// מסלול GET עבור הדף ה־QR Code
-routes.get("/", verifyTokenMiddleware,getQRCode);
-
-// מסלול POST ליצירת קוד QR ושמירתו במסד הנתונים
-routes.post("/generate-qr", verifyTokenMiddleware,getQRCodePost);
+routes.post("/generate-qr", verifyTokenMiddleware,getQRCodePost);// מסלול POST ליצירת קוד QR ושמירתו במסד הנתונים
 
 module.exports = routes;

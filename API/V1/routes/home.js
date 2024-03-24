@@ -3,7 +3,7 @@ const {
 news
 }= require("../controllers/news");
 const verifyTokenMiddleware = require("../middlewares/verifyTokenMiddleware");
-// מסלול הבית
-routes.get("/",verifyTokenMiddleware ,news);
+
+routes.get("/",verifyTokenMiddleware ,news);// מסלול הבית
 
 module.exports = routes; // ייצוא המודול

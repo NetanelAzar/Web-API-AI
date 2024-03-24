@@ -94,11 +94,18 @@ module.exports = {
           }).then((results) => {
             // שליחת איימיל למשתמש שנרשם
             const mailOptions = {
-              from: 'netanelazar880@gmail.com',
+              from: process.env.EMAIL_USER,
               to: email,
               subject: 'Welcome to our website!',
-              text: 'Thank you for registering with us.'
+              html: `
+                <div style="background-color: #f4f4f4; padding: 20px; border-radius: 5px;">
+                  <h2 style="color: #333;">Thank you for registering with us!</h2>
+                  <p style="color: #666;">We are excited to have you on board.</p>
+                  <a href="https://www.yourwebsite.com" style="background-color: #007bff; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Visit our website</a>
+                </div>
+              `
             };
+            
 
             transporter.sendMail(mailOptions, function(error, info) {
               if (error) {

@@ -2,10 +2,8 @@ const routes = require("express").Router();
 const verifyTokenMiddleware = require("../middlewares/verifyTokenMiddleware");
 const { getText, textGenerator } = require("../controllers/geminicontrollers");
 
-// מסלול POST לקבלת טקסט
-routes.post("/", verifyTokenMiddleware, getText);
+routes.post("/", verifyTokenMiddleware, getText);// מסלול POST לקבלת טקסט
 
-// מסלול GET ליצירת טקסט חדש
-routes.get("/", verifyTokenMiddleware, textGenerator);
+routes.get("/", verifyTokenMiddleware, textGenerator);// מסלול GET ליצירת טקסט חדש
 
 module.exports = routes;

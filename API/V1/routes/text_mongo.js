@@ -13,8 +13,8 @@ const {
   deleteText,
 } = require("../controllers/text_mongo");
 
-// הגדרת נתיב GET לקבלת כל הטקסטים
-routes.get("/", getAllTexts);
+
+routes.get("/", getAllTexts);// הגדרת נתיב GET לקבלת כל הטקסטים
 
 // הגדרת נתיב POST להוספת טקסט חדש, עם middleware של auth ושימוש בפונקציה addText מהקונטרולר textController
 routes.post("/api/text", textController.getText);
