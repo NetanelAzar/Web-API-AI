@@ -7,7 +7,7 @@ module.exports = {
             jwt.verify(req.session.user, process.env.PRIVATE_KEY, async (err, decoded) => {
                 if (err) {
                     console.error(err);
-                    return res.status(401).render("home", { layout: "main", title: "homer" });
+                    return res.status(401).render("home", { layout: "main", title: "HOME" });
                 }
     
                 const userEmail = decoded.email; // האימייל של המשתמש

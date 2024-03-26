@@ -192,4 +192,16 @@ module.exports = {
     });
 },
 
+
+logOut:(req, res) => {
+  req.session.destroy((err) => {// נקיה של הנתונים המזוהים עם המשתמש המחובר מהמאפיין `req.session`.
+    if (err) {
+      console.error("Error destroying session:", err);
+      return res.status(500).send("Internal Server Error");
+    }
+    // הפניה אל דף ההתחברות (login page) או דף אחר בו המשתמש יכול להתחבר מחדש.
+    res.redirect("/login"); // דוגמה לפנייה אל דף ההתחברות
+  });
+},
+
 };

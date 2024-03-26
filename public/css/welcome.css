@@ -1,0 +1,32 @@
+        /* עיצוב לקופסה הראשית */
+        #welcome-card {
+            display: flex; /* הצג את האלמנטים בתוך סדר גמיש */
+            flex-direction: column; /* הצג את האלמנטים בכיוון אנכי */
+            align-items: center; /* מרכוז את האלמנטים בציר האנכי */
+            justify-content: center; /* מרכוז את האלמנטים בציר האופקי */
+            background-color: #1a1a1a; /* צבע רקע כהה */
+            border-radius: 10px; /* פינות מעגלות */
+            padding: 40px; /* ריווח בתוך הקופסה */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* אפקט צל חזק */
+            max-width: 100%; /* רוחב מקסימלי */
+            margin: 0 auto; /* מרכוז את הקופסה באמצע */
+            margin-top: 50px; /* ריווח מלמעלה */
+        }
+
+        /* עיצוב לטקסט בתוך הקופסה */
+        #welcome-card p {
+            font-size: 20px; /* גודל פונט */
+            color: #eee; /* צבע טקסט */
+            text-align: center; /* מרכוז את הטקסט באמצע */
+            margin-bottom: 30px; /* ריווח מתחת לכל פסקה */
+        }
+            /* עיצוב לתמונת פרופיל */
+    #welcome-card img {
+        border-radius: 50%; /* הצגת התמונה כמעגל */
+        width: 150px; /* רוחב תמונה */
+        height: 150px; /* גובה תמונה */
+        object-fit: cover; /* סוג התאמה של התמונה */
+        border: 4px solid #fff; /* גבול לתמונה */
+        box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.3); /* אפקט צל סביב לתמונה */
+        margin-bottom: 20px; /* ריווח מתחת לתמונה */
+    }

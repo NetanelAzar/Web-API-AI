@@ -1,0 +1,37 @@
+
+
+                            <div class="content">
+          
+               
+            <div class="content-2">
+                <div class="recent-payments">
+
+ 
+                    <table>
+
+                         {{#each users}}
+                        <tr>
+                            
+                    <th>UserID</th> <!-- כותרת העמודה "שם" -->
+                    <th>Name</th> <!-- כותרת העמודה "שם" -->
+                    <th>Email</th> <!-- כותרת העמודה "דוא"ל" -->
+                    <th>URL</th> 
+                    <th>QR</th> 
+                            
+                        </tr>
+                        
+                        <tr>
+     <td class="name">{{this._id}}</td>
+     <td class="name">{{this.fullName}}</td>
+    <td class="email">{{this.email}}</td>
+    <td class="admin">{{this.urlsCount}}</td>
+    <td class="admin">{{this.qrCodesCount}}</td>
+                        </tr>
+                        {{/each}}
+
+                        </table>
+
+
+                </div>
+            </div>
+            </div>

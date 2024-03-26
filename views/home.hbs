@@ -4,6 +4,8 @@
 <!-- רשימת השעונים תוצג כאן -->
 <div id="clocks"></div>
 
+
+
 <!-- סקריפט JavaScript ליצירת השעונים -->
 <script src="js/worldClock.js" ></script>
 
@@ -13,8 +15,11 @@
 <h1>
   <marquee behavior="scroll" scrolldelay="200" style="background-color: rgba(255, 255, 255, 0.202)" width="100%" direction="right" scrollamount="15">
     <a style="color: white" target="_blank">
+         <div id="euroRate" style="display: inline-block; margin-right: 100px;"></div> <!-- מחיר האירו -->
       <div id="exchangeRate" style="display: inline-block; margin-right: 100px;"></div> <!-- מחירי החליפין -->
       <div id="bitcoinRate" style="display: inline-block; margin-right: 20px;"></div> <!-- מחירי הביטקוין -->
+     
+
       <script src="js/marquee.js" > </script> <!-- קובץ התסריט המניע את התנועה -->
     </a>
   </marquee>
@@ -73,3 +78,6 @@
         </ul>
     </section>
 </div>
+
+
+

@@ -1,0 +1,93 @@
+<style>
+
+
+
+  #header {
+  text-align: center;
+  margin-top: 20px;
+}
+
+#header h1 {
+  font-size: 2em; /* גודל הכותרת */
+  color: white; /* צבע הכותרת */
+}
+
+
+  
+#weather-form {
+  margin-top: 20px;
+  text-align: center;
+}
+
+#weather-form label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 1.2em;
+  color: #333;
+}
+
+#weather-form input[type="text"] {
+  width: 200px;
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  display: block; /* הפיכת התיבה לבלוק */
+  margin: 0 auto 10px; /* מרכוז תיבת הטקסט והוספת מרווח מתחתיה */
+}
+
+#weather-form button {
+  padding: 10px;
+  font-size: 1em;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: fit-content; /* רוחב הכפתור יהיה תואם לתוכן */
+  margin: 0 auto; /* מרכוז הכפתור */
+}
+
+#weather-form button:hover {
+  background-color: #0056b3;
+}
+
+#weather-info {
+  margin-top: 20px;
+  text-align: center;
+  border: 1px solid #ccc;
+  padding: 10px;
+  display: inline-block;
+  margin-top: 20px;
+}
+
+#weather-form {
+  margin-top: 20px;
+  text-align: center;
+}
+
+
+
+</style>
+
+<div id="header">
+  <h1>Weather App</h1>
+</div>
+
+<form action="/weather" method="GET" id="weather-form">
+  <label for="city">Enter City:</label>
+  <input type="text" id="city" name="city" required>
+  <button type="submit">Get Weather</button>
+
+<div id="weather-info">
+  {{#if weather}}
+    <p>City: {{weather.name}} <i class="fas fa-map-marker-alt"></i></p>
+    <p>Temperature: {{weather.main.temp}}°C <i class="fas fa-thermometer-half"></i></p> 
+    <p>Description: {{weather.weather.[0].description}} <i class="fas fa-cloud"></i></p>
+    <p>Humidity: {{weather.main.humidity}} <i class="fas fa-tint"></i></p>
+    <p>Wind Speed: {{weather.wind.speed}} m/s <i class="fas fa-wind"></i></p>
+  {{else}}
+    <p>No weather data available.</p>
+  {{/if}}
+</div>
+</form>

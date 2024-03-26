@@ -2,7 +2,7 @@
     <div class="container">
 <h2>Generate QR Code</h2>
 <form id="qrForm">
-  <label for="githubLink">GitHub Link:</label><br>
+  <label for="githubLink">Link:</label><br>
   <input type="text" id="githubLink" name="githubLink"><br><br>
   <button type="submit">Generate QR Code</button>
 </form>
@@ -14,7 +14,7 @@
         {{#each qrCodes}}
             <li>
                 <img src="{{this.qrCode}}" alt="QR Code"  style="width: 50px; height: 50px;">
-                 <span style="font-size: 12px; cursor: pointer;" onclick="window.open('{{this.githubLink}}', '_blank')">GitHub Link: {{this.githubLink}}</span>
+                 <span style="font-size: 12px; cursor: pointer;" onclick="window.open('{{this.githubLink}}', '_blank')">Link: {{this.githubLink}}</span>
             </li>
         {{/each}}
     </ul>

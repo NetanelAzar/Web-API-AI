@@ -1,7 +1,6 @@
 require("dotenv").config(); // טוען את הקונפיגורציה מהקובץ .env
 const express = require("express"); // ייבוא המודול express
 const morgan = require("morgan"); // ייבוא המודול morgan
-const session = require("express-session"); // ייבוא המודול express-session
 const mongoose = require("mongoose"); // ייבוא המודול mongoose
 mongoose.pluralize(null); // מונע מ-Mongoose להמיר את שמות הדגמים לשמות הקולקציות במסד הנתונים
 const MongoStore = require("connect-mongo"); // ייבוא המודול connect-mongo
@@ -10,7 +9,8 @@ const mysql = require("mysql"); // ייבוא המודול mysql
 const app = express(); // יצירת אפליקציה חדשה באמצעות express
 const hbs = require("express-handlebars"); // ייבוא המודול express-handlebars
 
-const twentyMin = 1000 * 60 * 20; // הגדרת זמן פג תוקף של ה-session
+const sessionMiddleware = require('./API/V1/middlewares/sessionConfig');
+
 // ייבוא נתיבי המשתמשים
 const userRoute = require("./API/V1/routes/user");
 const adminRoute =require("./API/V1/routes/admin")
@@ -26,7 +26,7 @@ const now = DateTime.now();// יצירת אובייקט DateTime עבור הזמ
 const formattedDateTime = now.toFormat('yyyy-MM-dd HH:mm:ss');// קבלת התאריך והשעה בפורמט מבוקש (YYYY-MM-DD HH:MM:SS)
 console.log(formattedDateTime);// הדפסת התאריך והשעה
 
-
+/*
 const connection = mysql.createConnection({// יצירת חיבור למסד נתונים MySQL
   host: "127.0.0.1",
   user: process.env.MYSQL_USER,
@@ -37,7 +37,7 @@ connection.connect(() => {  // התחברות למסד נתונים MySQL
   console.log("Connected to MySQL");
 });
 global.db = connection; // הגדרת משתנה גלובלי עבור מסד הנתונים
-
+*/
 
 const ConnStr = process.env.MONGO_CONN;
 mongoose.connect(ConnStr + process.env.MONGO_DB).then((status) => {//התחברות למסד נתונים
@@ -65,19 +65,67 @@ app.engine(// הגדרת מנוע התצוגה של Handlebars
   })
 );
 
+///קבלת סשן
+app.use(sessionMiddleware);
 
 
-app.use(
-  session({// שימוש ב-session והגדרת הגדרות שונות עבורו
-    secret: process.env.PRIVATE_KEY, 
-    resave: false,
-    saveUninitialized: true,
-    cookie: { maxAge: twentyMin }, 
-    store: new MongoStore({  // אחסון sessions  ב- MongoDB
-      mongoUrl: process.env.MONGO_CONN + process.env.SESSION_DB,
-    }),
-  })
-);
+
+
+
+
+
+
+
+
+
+
+
+
+
+const axios = require("axios");
+
+// Function to fetch weather data
+async function getWeatherData(city) {
+  const apiKey = "53e3ec16cade9f8d29312cbba0329f01";
+  const weatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&APPID=${apiKey}`;
+  try {
+    const response = await axios.get(weatherURL); // שימוש ב־axios.get כדי לבצע בקשת GET
+    const weatherData = response.data;
+    return weatherData;
+  } catch (error) {
+    console.log("Error fetching weather data:", error);
+    throw error;
+  }
+}
+
+
+
+  app.get("/weatherCity", (req, res) => {
+    res.render("weatherCity",{layout:"main"});
+  });
+  app.get("/weather", async (req, res) => {
+    const city = req.query.city;
+    try {
+      const weatherData = await getWeatherData(city);
+      res.render("weatherCity", {layout:"main", weather: weatherData });
+    } catch (error) {
+      res.status(500).send("Error fetching weather data.");
+    }
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
