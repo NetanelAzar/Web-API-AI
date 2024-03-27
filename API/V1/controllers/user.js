@@ -164,8 +164,21 @@ module.exports = {
             const isAdmin = myUser.isAdmin;
 
             if (isAdmin) {
+
+              User.findOne({ email }).then((user) => {
+                // הפניה לתבנית ה-HTML עם התמונה
+                return res.render("Welcome", {
+                    layout: "main",
+                    title: "Welcome",
+                    username: myUser.fullName,
+                    profileImage: `/uploads/pics/${user.picname}`, // כתובת ה-URL של התמונה
+                    isAdmin: isAdmin
+                });
+            }).catch((error) => {
+                console.error("Error fetching user data:", error);
+                return res.status(500).json({ message: "Internal server error" });
+            });
               // המשתמש הוא admin, שלח אותו ישירות לדף ה-admin
-              return res.redirect('/admin');
           }
            else {
                 // אם המשתמש אינו admin, המשך עם הלוגיקה הרגילה

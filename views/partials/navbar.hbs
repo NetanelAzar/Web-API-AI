@@ -41,7 +41,9 @@
       <span class="username">{{username}}</span>
       <!-- קישור להתנתקות -->
       <a href="/login/logout">Logout</a>
-  
+  {{#if isAdmin}}
+        / <a href="/admin">Admin</a>
+      {{/if}}
     {{else}}
       <!-- אם המשתמש לא מחובר, הצגת קישור להתחברות -->
       <a href="/login">Login</a> / <a href="/register">Signup</a>
