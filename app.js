@@ -25,18 +25,6 @@ const now = DateTime.now();// יצירת אובייקט DateTime עבור הזמ
 const formattedDateTime = now.toFormat('yyyy-MM-dd HH:mm:ss');// קבלת התאריך והשעה בפורמט מבוקש (YYYY-MM-DD HH:MM:SS)
 console.log(formattedDateTime);// הדפסת התאריך והשעה
 
-/*
-const connection = mysql.createConnection({// יצירת חיבור למסד נתונים MySQL
-  host: "127.0.0.1",
-  user: process.env.MYSQL_USER,
-  password: process.env.MYSQL_PRIVATE_PASS,
-  database: process.env.MYSQL_DB,
-});
-connection.connect(() => {  // התחברות למסד נתונים MySQL
-  console.log("Connected to MySQL");
-});
-global.db = connection; // הגדרת משתנה גלובלי עבור מסד הנתונים
-*/
 
 const ConnStr = process.env.MONGO_CONN;
 mongoose.connect(ConnStr + process.env.MONGO_DB).then((status) => {//התחברות למסד נתונים
