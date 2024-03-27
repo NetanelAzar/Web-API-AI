@@ -3,9 +3,7 @@ const express = require("express"); // ייבוא המודול express
 const morgan = require("morgan"); // ייבוא המודול morgan
 const mongoose = require("mongoose"); // ייבוא המודול mongoose
 mongoose.pluralize(null); // מונע מ-Mongoose להמיר את שמות הדגמים לשמות הקולקציות במסד הנתונים
-const MongoStore = require("connect-mongo"); // ייבוא המודול connect-mongo
 const { DateTime } = require("luxon");
-const mysql = require("mysql"); // ייבוא המודול mysql
 const app = express(); // יצירת אפליקציה חדשה באמצעות express
 const hbs = require("express-handlebars"); // ייבוא המודול express-handlebars
 
@@ -21,6 +19,7 @@ const qrRoute=require("./API/V1/routes/qrcode");
 const urlRoute = require("./API/V1/routes/url");
 const homeRoute = require("./API/V1/routes/home");
 const contactRoute = require("./API/V1/routes/contact")
+const weatherRoutes=require('./API/V1/routes/weather');
 
 const now = DateTime.now();// יצירת אובייקט DateTime עבור הזמן הנוכחי
 const formattedDateTime = now.toFormat('yyyy-MM-dd HH:mm:ss');// קבלת התאריך והשעה בפורמט מבוקש (YYYY-MM-DD HH:MM:SS)
@@ -71,67 +70,10 @@ app.use(sessionMiddleware);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-const axios = require("axios");
-
-// Function to fetch weather data
-async function getWeatherData(city) {
-  const apiKey = "53e3ec16cade9f8d29312cbba0329f01";
-  const weatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&APPID=${apiKey}`;
-  try {
-    const response = await axios.get(weatherURL); // שימוש ב־axios.get כדי לבצע בקשת GET
-    const weatherData = response.data;
-    return weatherData;
-  } catch (error) {
-    console.log("Error fetching weather data:", error);
-    throw error;
-  }
-}
-
-
-
-  app.get("/weatherCity", (req, res) => {
-    res.render("weatherCity",{layout:"main"});
-  });
-  app.get("/weather", async (req, res) => {
-    const city = req.query.city;
-    try {
-      const weatherData = await getWeatherData(city);
-      res.render("weatherCity", {layout:"main", weather: weatherData });
-    } catch (error) {
-      res.status(500).send("Error fetching weather data.");
-    }
-  });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // שימוש בנתיבי ה-API
 app.use("/contact",contactRoute );
 app.use("/register", registerRoute);
+app.use("/weather",weatherRoutes)
 app.use("/login", logINRoute);
 app.use("/admin",adminRoute)
 app.use("/text", geminiRoute);
